@@ -957,7 +957,7 @@ a:focus-visible, button:focus-visible {
 .liturgy-title {
     font-family: var(--font-heading);
     color: var(--clr-primary);
-    font-size: 1.5rem;
+    font-size: 1.5em;
     border-bottom: 2px solid var(--clr-accent);
     padding-bottom: 0.5rem;
     margin-bottom: 2rem;
@@ -968,14 +968,14 @@ a:focus-visible, button:focus-visible {
 .liturgy-item {
     margin-bottom: 1.5rem;
     line-height: 1.7;
-    font-size: 1.05rem;
+    font-size: 1.05em;
 }
 
 .liturgy-item strong.leader {
     color: var(--clr-secondary);
     display: block;
     margin-bottom: 0.25rem;
-    font-size: 0.95rem;
+    font-size: 0.95em;
     text-transform: uppercase;
     letter-spacing: 0.02em;
 }
@@ -1043,11 +1043,13 @@ a:focus-visible, button:focus-visible {
     background-color: transparent;
     border: 1.5px solid rgba(0,0,0,0.15);
     color: var(--clr-primary);
-    padding: 0.35rem 0.75rem;
-    font-size: 0.9rem;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
     font-weight: 700;
     border-radius: var(--border-radius-sm);
     cursor: pointer;
+    min-width: 3rem;
+    min-height: 2.75rem; /* Ensures >44px height for mobile touch targets */
     transition: var(--transition-smooth);
     display: inline-flex;
     align-items: center;

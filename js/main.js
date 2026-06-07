@@ -90,7 +90,7 @@ function initFormHandlers() {
     
     forms.forEach(form => {
         // Exclude the bulletin update form
-        if (form.id === 'bulletin-admin-form') return;
+        if (form.id === 'bulletin-admin-page-form') return;
         
         form.addEventListener('submit', (e) => {
             e.preventDefault();
