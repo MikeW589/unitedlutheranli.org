@@ -145,7 +145,8 @@ function initBulletinSimulator() {
         communionHymns: "All Are Welcome (ELW 641), As the Grains of Wheat (ELW 465), Lamb of God (ELW 336)",
         announcement: "Guatemala Mission Tag Sale Fundraiser: Saturday 6/20 from 9:00 AM – 4:00 PM at the Gloria Dei Campus. Drop off items during Joseph's Storehouse hours!",
         assistants: "Rev. Christian Cederstrom, Pastor\nNancy Barker, Worship Assistant\nRich Harris, Reader and Communion Assistant\nRichard Whitten, Minister of Music/Organist\nLaurie Haddock, Minister of Music/Youth & Family",
-        pdfUrl: "Reference/Bulletin June 7.pdf"
+        pdfUrl: "Reference/Bulletin June 7.pdf",
+        announcementsPdfUrl: "Reference/emailed Announcements June 7.pdf"
     };
 
     // 1. ADMIN PANEL LOGIC (bulletin-admin.html)
@@ -173,6 +174,7 @@ function initBulletinSimulator() {
         document.getElementById('adm-announcement').value = savedData.announcement || defaults.announcement;
         document.getElementById('adm-assistants').value = savedData.assistants || defaults.assistants;
         document.getElementById('adm-pdf-url').value = savedData.pdfUrl || defaults.pdfUrl;
+        document.getElementById('adm-announcements-pdf-url').value = savedData.announcementsPdfUrl || defaults.announcementsPdfUrl;
 
         // Form Submission
         adminForm.addEventListener('submit', (e) => {
@@ -194,7 +196,8 @@ function initBulletinSimulator() {
                 communionHymns: document.getElementById('adm-communion-hymns').value,
                 announcement: document.getElementById('adm-announcement').value,
                 assistants: document.getElementById('adm-assistants').value,
-                pdfUrl: document.getElementById('adm-pdf-url').value
+                pdfUrl: document.getElementById('adm-pdf-url').value,
+                announcementsPdfUrl: document.getElementById('adm-announcements-pdf-url').value
             };
 
             localStorage.setItem('ulc_bulletin_data', JSON.stringify(newData));
@@ -239,6 +242,7 @@ function initBulletinSimulator() {
                     document.getElementById('adm-announcement').value = defaults.announcement;
                     document.getElementById('adm-assistants').value = defaults.assistants;
                     document.getElementById('adm-pdf-url').value = defaults.pdfUrl;
+                    document.getElementById('adm-announcements-pdf-url').value = defaults.announcementsPdfUrl;
 
                     // Show reset alert
                     const alertBox = document.getElementById('admin-alert');
@@ -309,5 +313,40 @@ function initBulletinSimulator() {
         
         const simPdfLink = document.getElementById('sim-pdf-btn');
         if (simPdfLink) simPdfLink.href = savedData.pdfUrl || defaults.pdfUrl;
+
+        const simAnnouncementsPdfLink = document.getElementById('sim-announcements-pdf-btn');
+        if (simAnnouncementsPdfLink) simAnnouncementsPdfLink.href = savedData.announcementsPdfUrl || defaults.announcementsPdfUrl;
+
+        // 3. FONT SIZE ACCESSIBILITY ADJUSTER LOGIC
+        const scalableContent = document.getElementById('bulletin-scalable-content');
+        const btnDec = document.getElementById('btn-font-dec');
+        const btnReset = document.getElementById('btn-font-reset');
+        const btnInc = document.getElementById('btn-font-inc');
+        
+        if (scalableContent && btnDec && btnReset && btnInc) {
+            const minSize = 0.9;
+            const maxSize = 1.5;
+            const step = 0.15;
+            const defaultSize = 1.05;
+            
+            let currentSize = parseFloat(localStorage.getItem('ulc_bulletin_font_size')) || defaultSize;
+            
+            const updateFontSize = (size) => {
+                currentSize = Math.max(minSize, Math.min(maxSize, size));
+                scalableContent.style.fontSize = `${currentSize}rem`;
+                localStorage.setItem('ulc_bulletin_font_size', currentSize);
+                
+                // Enable/disable button states
+                btnDec.disabled = currentSize <= minSize;
+                btnInc.disabled = currentSize >= maxSize;
+            };
+            
+            // Initialize sizing
+            updateFontSize(currentSize);
+            
+            btnDec.addEventListener('click', () => updateFontSize(currentSize - step));
+            btnReset.addEventListener('click', () => updateFontSize(defaultSize));
+            btnInc.addEventListener('click', () => updateFontSize(currentSize + step));
+        }
     }
 }

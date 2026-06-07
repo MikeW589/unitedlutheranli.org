@@ -82,14 +82,29 @@
         <section class="section" style="background-color: var(--clr-bg-cream); padding: 3rem 0;">
             <div class="container" style="max-width: 750px;">
                 
-                <div class="card" style="padding: 3.5rem; background: var(--clr-bg-pure); border: 1px solid rgba(0,0,0,0.06); box-shadow: var(--shadow-medium); border-radius: var(--border-radius-lg);">
+                <div class="bulletin-worshipper-card">
+                    
+                    <!-- Text Resizing Accessibility Panel -->
+                    <div class="accessibility-panel">
+                        <span class="accessibility-panel-label">
+                            <i data-lucide="type" style="width: 16px; height: 16px;"></i> Text Size
+                        </span>
+                        <div class="accessibility-buttons">
+                            <button id="btn-font-dec" class="btn-font-control" title="Decrease Text Size" aria-label="Decrease Text Size">A-</button>
+                            <button id="btn-font-reset" class="btn-font-control" title="Reset Text Size" aria-label="Reset Text Size">Reset</button>
+                            <button id="btn-font-inc" class="btn-font-control" title="Increase Text Size" aria-label="Increase Text Size">A+</button>
+                        </div>
+                    </div>
                     
                     <!-- Welcome & Communion Alert -->
                     <div style="background-color: var(--clr-bg-cream); border-left: 4px solid var(--clr-accent); padding: 1.25rem; border-radius: var(--border-radius-sm); font-size: 0.95rem; line-height: 1.5; margin-bottom: 3rem;">
                         <strong>Welcome to United Lutheran Church!</strong> We celebrate God's grace with you today. Holy Communion is celebrated at all services and is open to all who desire to meet Christ in this bread and wine. Please follow the instructions of the pastor and ushers during the distribution.
                     </div>
 
-                    <!-- GATHERING SECTION -->
+                    <!-- Scalable Liturgy & Announcements Content -->
+                    <div id="bulletin-scalable-content" style="font-size: 1.05rem; transition: font-size 0.2s ease;">
+
+                        <!-- GATHERING SECTION -->
                     <div id="sec-gathering" class="liturgy-section">
                         <h3 class="liturgy-title"><i data-lucide="sun" style="width:18px; height:18px; display:inline; vertical-align:middle; margin-right:6px;"></i> The Gathering</h3>
                         
@@ -406,16 +421,30 @@
                                 Richard Whitten, Minister of Music/Organist
                                 Laurie Haddock, Minister of Music/Youth & Family
                             </div>
-                        </div>
+                                   <!-- ANNOUNCEMENTS SECTION (Expandable Gold Card) -->
+                    <div id="sec-announcements" class="liturgy-section" style="margin-bottom: 0;">
+                        <details class="announcements-details" open>
+                            <summary class="announcements-summary">
+                                <span class="announcements-summary-title">
+                                    <i data-lucide="megaphone" style="width: 20px; height: 20px; vertical-align: middle;"></i>
+                                    Weekly Announcements
+                                </span>
+                                <i data-lucide="chevron-down" class="announcements-toggle-icon" style="width: 20px; height: 20px;"></i>
+                            </summary>
+                            <div class="announcements-content">
+                                <div id="sim-announcement" style="font-family: var(--font-body); font-style: normal; color: var(--clr-text-muted); line-height: 1.7; font-size: 1.05rem; white-space: pre-line; margin-bottom: 1.5rem;">
+                                    Guatemala Mission Tag Sale Fundraiser: Saturday 6/20 from 9:00 AM – 4:00 PM at the Gloria Dei Campus. Drop off items during Joseph's Storehouse hours!
+                                </div>
+                                <div style="text-align: center; margin-top: 1rem;">
+                                    <a id="sim-announcements-pdf-btn" href="Reference/emailed Announcements June 7.pdf" target="_blank" rel="noopener" class="btn btn-outline btn-sm" style="width: 100%; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 0.95rem;">
+                                        <i data-lucide="download"></i> Download Printable Announcements PDF
+                                    </a>
+                                </div>
+                            </div>
+                        </details>
                     </div>
 
-                    <!-- ANNOUNCEMENTS SECTION -->
-                    <div id="sec-announcements" class="liturgy-section" style="margin-bottom: 0;">
-                        <h3 class="liturgy-title"><i data-lucide="megaphone" style="width:18px; height:18px; display:inline; vertical-align:middle; margin-right:6px;"></i> Weekly Announcements</h3>
-                        <div id="sim-announcement" class="liturgy-lyrics" style="font-family: var(--font-body); font-style: normal; color: var(--clr-text-muted); padding-left: 1.5rem; border-left: 3px solid var(--clr-accent); line-height: 1.7; font-size: 1.05rem; white-space: pre-line; margin: 0;">
-                            Guatemala Mission Tag Sale Fundraiser: Saturday 6/20 from 9:00 AM – 4:00 PM at the Gloria Dei Campus. Drop off items during Joseph's Storehouse hours!
-                        </div>
-                    </div>
+                    </div> <!-- End of #bulletin-scalable-content -->
 
                     <!-- PDF Bulletin Download Link -->
                     <div style="text-align: center; border-top: 1px solid rgba(0,0,0,0.06); padding-top: 2rem; margin-top: 3rem;">

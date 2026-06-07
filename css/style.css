@@ -997,4 +997,132 @@ a:focus-visible, button:focus-visible {
     white-space: pre-line; /* preserves line breaks for song lyrics */
 }
 
+.bulletin-worshipper-card {
+    padding: 3.5rem;
+    background: var(--clr-bg-pure);
+    border: 1px solid rgba(0,0,0,0.06);
+    box-shadow: var(--shadow-medium);
+    border-radius: var(--border-radius-lg);
+    transition: var(--transition-smooth);
+}
+
+@media (max-width: 768px) {
+    .bulletin-worshipper-card {
+        padding: 1.5rem;
+        border-radius: var(--border-radius-md);
+    }
+}
+
+/* Accessibility Sizing Panel */
+.accessibility-panel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+.accessibility-panel-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--clr-text-muted);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.accessibility-buttons {
+    display: inline-flex;
+    gap: 8px;
+}
+
+.btn-font-control {
+    background-color: transparent;
+    border: 1.5px solid rgba(0,0,0,0.15);
+    color: var(--clr-primary);
+    padding: 0.35rem 0.75rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-font-control:hover:not(:disabled) {
+    border-color: var(--clr-primary);
+    background-color: rgba(0,0,0,0.02);
+}
+
+.btn-font-control:focus-visible {
+    outline: 2px solid var(--clr-accent);
+    outline-offset: 2px;
+}
+
+.btn-font-control:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+/* Expandable Gold Announcements Card */
+.announcements-details {
+    background-color: hsl(35, 100%, 97%); /* Parish warm cream/gold */
+    border: 1px solid rgba(180, 83, 9, 0.25);
+    border-radius: var(--border-radius-md);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    transition: var(--transition-smooth);
+}
+
+.announcements-details[open] {
+    box-shadow: var(--shadow-soft);
+    border-color: var(--clr-accent);
+}
+
+.announcements-summary {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--clr-primary);
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    outline: none;
+    user-select: none;
+}
+
+.announcements-summary::-webkit-details-marker {
+    display: none;
+}
+
+.announcements-summary-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.25rem;
+}
+
+.announcements-toggle-icon {
+    color: var(--clr-accent);
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+}
+
+.announcements-details[open] .announcements-toggle-icon {
+    transform: rotate(180deg);
+}
+
+.announcements-content {
+    margin-top: 1.25rem;
+    border-top: 1.5px dashed rgba(180, 83, 9, 0.15);
+    padding-top: 1.25rem;
+    animation: fadeIn 0.4s ease-out forwards;
+}
+
 
