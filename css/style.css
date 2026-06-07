@@ -886,3 +886,29 @@ a:focus-visible, button:focus-visible {
         padding: 0;
     }
 }
+
+/* Floating Action Button (FAB) for Admin Portal */
+.admin-fab {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background-color: var(--clr-primary);
+    color: var(--clr-text-light);
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    transition: var(--transition-smooth);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.admin-fab:hover {
+    background-color: var(--clr-secondary);
+    transform: scale(1.1) rotate(45deg);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+}
+

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulletin Administration | United Lutheran Church of Long Island</title>
+    <meta name="description" content="Administration panel for managing the weekly digital bulletin.">
+    
+    <!-- Stylesheets & Scripts -->
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/main.js" defer></script>
+    
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="animate-fade-in">
+
+    <!-- Liturgical Seasons & Shared Worship Banner -->
+    <div class="liturgical-bar">
+        <div class="container">
+            <span class="liturgical-badge">Admin Dashboard</span>
+            <span>United Lutheran Collaborative Parish Website Manager</span>
+        </div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="site-header">
+        <div class="nav-container">
+            <a href="index.html" class="brand" aria-label="United Lutheran Church of Long Island Home">
+                <img src="https://www.mnys.org/assets/18/6/ULC_Logo_2025.png?14372" alt="United Lutheran Church Logo" class="brand-logo">
+                <div class="brand-text">
+                    <h1>United Lutheran</h1>
+                    <p>Church of Long Island</p>
+                </div>
+            </a>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="campuses.html" class="nav-link">Our Campuses</a></li>
+                    <li><a href="history.html" class="nav-link">Our Legacy</a></li>
+                    <li><a href="preschool.html" class="nav-link">Preschool</a></li>
+                    <li><a href="ministries.html" class="nav-link">Ministries</a></li>
+                    <li><a href="bulletin.html" class="nav-link">Digital Bulletin</a></li>
+                    <li><a href="give.html" class="btn btn-primary btn-sm" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Give Online</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <button class="menu-toggle" aria-label="Toggle Navigation Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Title Banner -->
+        <section class="section" style="background-color: var(--clr-primary); color: var(--clr-text-light); padding: 4rem 0;">
+            <div class="container" style="text-align: center;">
+                <h2 style="color: var(--clr-text-light);">Bulletin Editor & Admin Dashboard</h2>
+                <p style="color: var(--clr-text-light); opacity: 0.8; max-width: 600px; margin: 1rem auto 0; font-size: 1.15rem;">
+                    Update the readings, hymns, and announcements. Worshippers scanning the pew QR codes will see these updates instantly.
+                </p>
+            </div>
+        </section>
+
+        <!-- Admin Form Area -->
+        <section class="section">
+            <div class="container" style="max-width: 800px;">
+                <div class="card" style="padding: 3rem; background: var(--clr-bg-white);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid rgba(0,0,0,0.06); padding-bottom: 1rem; margin-bottom: 2rem;">
+                        <h3 style="margin: 0; font-size: 1.5rem; color: var(--clr-primary);"><i data-lucide="edit" style="vertical-align: middle; margin-right: 8px;"></i>Weekly Liturgy Fields</h3>
+                        <a href="bulletin.html" class="btn btn-outline btn-sm" style="font-size: 0.9rem; padding: 0.5rem 1rem;"><i data-lucide="eye"></i> View Live Page</a>
+                    </div>
+
+                    <form id="bulletin-admin-page-form">
+                        <div class="form-group">
+                            <label class="form-label" for="adm-date">Bulletin Date/Title</label>
+                            <input type="text" id="adm-date" class="form-control" value="Sunday, June 7, 2026" required>
+                        </div>
+                        
+                        <div class="grid-2" style="gap: 1.5rem; margin-bottom: 0;">
+                            <div class="form-group">
+                                <label class="form-label" for="adm-first-lesson">First Reading</label>
+                                <input type="text" id="adm-first-lesson" class="form-control" value="Romans 4:13-25" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="adm-gospel">Holy Gospel</label>
+                                <input type="text" id="adm-gospel" class="form-control" value="Matthew 9:9-13, 18-26" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="adm-hymn1">Hymn 1 (Gathering)</label>
+                            <input type="text" id="adm-hymn1" class="form-control" value="Will You Come and Follow Me (ELW 798)" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="adm-hymn2">Hymn 2 (Day)</label>
+                            <input type="text" id="adm-hymn2" class="form-control" value="Jesus Calls Us; o'er the Tumult (ELW 696)" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="adm-hymn3">Hymn 3 (Sending)</label>
+                            <input type="text" id="adm-hymn3" class="form-control" value="I'm So Glad (ELW 860)" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="adm-announcement">Weekly Announcement</label>
+                            <textarea id="adm-announcement" class="form-control" rows="4" required>Guatemala Mission Tag Sale Fundraiser: Saturday 6/20 from 9:00 AM – 4:00 PM at the Gloria Dei Campus. Drop off items during Joseph's Storehouse hours!</textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="adm-pdf-url">Printable PDF Destination URL</label>
+                            <input type="text" id="adm-pdf-url" class="form-control" value="Reference/Bulletin June 7.pdf" required>
+                        </div>
+
+                        <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                            <button type="submit" class="btn btn-primary" style="flex: 1;"><i data-lucide="save"></i> Save & Publish Bulletin</button>
+                            <button type="button" id="reset-defaults-btn" class="btn btn-outline" style="color: var(--clr-secondary); border-color: var(--clr-secondary);"><i data-lucide="rotate-ccw"></i> Reset Defaults</button>
+                        </div>
+                    </form>
+
+                    <!-- Alert message container -->
+                    <div id="admin-alert" style="margin-top: 1.5rem; display: none;"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="index.html" class="brand" style="color: white;">
+                    <img src="https://www.mnys.org/assets/18/6/ULC_Logo_2025.png?14372" alt="United Lutheran Church Logo" class="brand-logo" style="filter: brightness(0) invert(1);">
+                    <div class="brand-text">
+                        <h2 style="color: white; font-size: 1.35rem;">United Lutheran</h2>
+                        <p style="color: var(--clr-accent-light);">Church of Long Island</p>
+                    </div>
+                </a>
+                <p>We are a merged ELCA congregation woven from the legacies of St. Peter's, Gloria Dei, and King of Kings. Serving the Huntington and Melville communities.</p>
+            </div>
+            
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul class="footer-links-list">
+                    <li><a href="index.html" class="footer-link">Home</a></li>
+                    <li><a href="campuses.html" class="footer-link">Our Campuses</a></li>
+                    <li><a href="history.html" class="footer-link">Legacy & History</a></li>
+                    <li><a href="preschool.html" class="footer-link">Nursery Preschool</a></li>
+                    <li><a href="ministries.html" class="footer-link">Ministries</a></li>
+                    <li><a href="bulletin.html" class="footer-link">Digital Bulletin</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-contact">
+                <h3>Contact Office</h3>
+                <ul class="footer-contact-list">
+                    <li class="footer-contact-item">
+                        <i data-lucide="map-pin"></i>
+                        <span><strong>St. Peter's Campus (Office)</strong><br>11 Ogden Court, Huntington Station, NY</span>
+                    </li>
+                    <li class="footer-contact-item">
+                        <i data-lucide="mail"></i>
+                        <span>unitedlutheran.li@gmail.com</span>
+                    </li>
+                    <li class="footer-contact-item">
+                        <i data-lucide="phone"></i>
+                        <span>(631) 423-1013</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 United Lutheran Church of Long Island. All Rights Reserved. A congregation of the ELCA.</p>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

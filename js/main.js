@@ -124,77 +124,132 @@ function initFormHandlers() {
 }
 
 /**
- * Weekly Bulletin Update Simulator
- * Syncs the admin fields with the simulated visitor mobile screen
+ * Weekly Bulletin Persistent System (localStorage Database simulation)
+ * Handles both the Admin Dashboard and the Worshipper View
  */
 function initBulletinSimulator() {
-    const adminForm = document.getElementById('bulletin-admin-form');
-    if (!adminForm) return;
+    // Default values for resetting or fallback
+    const defaults = {
+        date: "Sunday, June 7, 2026",
+        firstLesson: "Romans 4:13-25",
+        gospel: "Matthew 9:9-13, 18-26",
+        hymn1: "Will You Come and Follow Me (ELW 798)",
+        hymn2: "Jesus Calls Us; o'er the Tumult (ELW 696)",
+        hymn3: "I'm So Glad (ELW 860)",
+        announcement: "Guatemala Mission Tag Sale Fundraiser: Saturday 6/20 from 9:00 AM – 4:00 PM at the Gloria Dei Campus. Drop off items during Joseph's Storehouse hours!",
+        pdfUrl: "Reference/Bulletin June 7.pdf"
+    };
 
-    // Admin Inputs
-    const inputDate = document.getElementById('adm-date');
-    const inputFirstLesson = document.getElementById('adm-first-lesson');
-    const inputGospel = document.getElementById('adm-gospel');
-    const inputHymn1 = document.getElementById('adm-hymn1');
-    const inputHymn2 = document.getElementById('adm-hymn2');
-    const inputHymn3 = document.getElementById('adm-hymn3');
-    const inputAnnouncement = document.getElementById('adm-announcement');
-    const inputPdfLink = document.getElementById('adm-pdf-url');
+    // 1. ADMIN PANEL LOGIC (bulletin-admin.html)
+    const adminForm = document.getElementById('bulletin-admin-page-form');
+    const resetBtn = document.getElementById('reset-defaults-btn');
+    
+    if (adminForm) {
+        // Load existing data from localStorage or use defaults
+        const savedData = JSON.parse(localStorage.getItem('ulc_bulletin_data')) || defaults;
+        
+        // Populate form fields
+        document.getElementById('adm-date').value = savedData.date;
+        document.getElementById('adm-first-lesson').value = savedData.firstLesson;
+        document.getElementById('adm-gospel').value = savedData.gospel;
+        document.getElementById('adm-hymn1').value = savedData.hymn1;
+        document.getElementById('adm-hymn2').value = savedData.hymn2;
+        document.getElementById('adm-hymn3').value = savedData.hymn3;
+        document.getElementById('adm-announcement').value = savedData.announcement;
+        document.getElementById('adm-pdf-url').value = savedData.pdfUrl;
 
-    // Phone Sim Outputs
-    const simDate = document.getElementById('sim-date');
-    const simFirstLesson = document.getElementById('sim-first-lesson');
-    const simGospel = document.getElementById('sim-gospel');
-    const simHymn1 = document.getElementById('sim-hymn1');
-    const simHymn2 = document.getElementById('sim-hymn2');
-    const simHymn3 = document.getElementById('sim-hymn3');
-    const simAnnouncement = document.getElementById('sim-announcement');
-    const simPdfLink = document.getElementById('sim-pdf-btn');
+        // Form Submission
+        adminForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const newData = {
+                date: document.getElementById('adm-date').value,
+                firstLesson: document.getElementById('adm-first-lesson').value,
+                gospel: document.getElementById('adm-gospel').value,
+                hymn1: document.getElementById('adm-hymn1').value,
+                hymn2: document.getElementById('adm-hymn2').value,
+                hymn3: document.getElementById('adm-hymn3').value,
+                announcement: document.getElementById('adm-announcement').value,
+                pdfUrl: document.getElementById('adm-pdf-url').value
+            };
 
-    // Update function
-    function updateSimulator() {
-        if (simDate && inputDate) simDate.textContent = inputDate.value;
-        if (simFirstLesson && inputFirstLesson) simFirstLesson.textContent = inputFirstLesson.value;
-        if (simGospel && inputGospel) simGospel.textContent = inputGospel.value;
-        if (simHymn1 && inputHymn1) simHymn1.textContent = inputHymn1.value;
-        if (simHymn2 && inputHymn2) simHymn2.textContent = inputHymn2.value;
-        if (simHymn3 && inputHymn3) simHymn3.textContent = inputHymn3.value;
-        if (simAnnouncement && inputAnnouncement) simAnnouncement.textContent = inputAnnouncement.value;
-        if (simPdfLink && inputPdfLink) {
-            simPdfLink.href = inputPdfLink.value;
+            localStorage.setItem('ulc_bulletin_data', JSON.stringify(newData));
+
+            // Show success alert
+            const alertBox = document.getElementById('admin-alert');
+            if (alertBox) {
+                alertBox.style.display = 'block';
+                alertBox.innerHTML = `
+                    <div style="background-color: #d1fae5; border: 1px solid #10b981; color: #065f46; padding: 1rem; border-radius: var(--border-radius-sm); font-size: 0.95rem; font-weight: 600; display: flex; align-items: center; gap: 8px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        <span>Bulletin updated successfully! Worshippers will now see these changes live.</span>
+                    </div>
+                `;
+                // Auto hide after 4 seconds
+                setTimeout(() => { alertBox.style.display = 'none'; }, 4000);
+            }
+        });
+
+        // Reset Button
+        if (resetBtn) {
+            resetBtn.addEventListener('click', () => {
+                if (confirm("Are you sure you want to reset the bulletin back to the default June 7th service details?")) {
+                    localStorage.removeItem('ulc_bulletin_data');
+                    
+                    // Reset inputs
+                    document.getElementById('adm-date').value = defaults.date;
+                    document.getElementById('adm-first-lesson').value = defaults.firstLesson;
+                    document.getElementById('adm-gospel').value = defaults.gospel;
+                    document.getElementById('adm-hymn1').value = defaults.hymn1;
+                    document.getElementById('adm-hymn2').value = defaults.hymn2;
+                    document.getElementById('adm-hymn3').value = defaults.hymn3;
+                    document.getElementById('adm-announcement').value = defaults.announcement;
+                    document.getElementById('adm-pdf-url').value = defaults.pdfUrl;
+
+                    // Show reset alert
+                    const alertBox = document.getElementById('admin-alert');
+                    if (alertBox) {
+                        alertBox.style.display = 'block';
+                        alertBox.innerHTML = `
+                            <div style="background-color: #fef3c7; border: 1px solid #d97706; color: #92400e; padding: 1rem; border-radius: var(--border-radius-sm); font-size: 0.95rem; font-weight: 600; display: flex; align-items: center; gap: 8px;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path></svg>
+                                <span>Reset to parish defaults. Local changes cleared.</span>
+                            </div>
+                        `;
+                        setTimeout(() => { alertBox.style.display = 'none'; }, 4000);
+                    }
+                }
+            });
         }
     }
 
-    // Bind event listeners to input elements for real-time preview
-    const inputs = [inputDate, inputFirstLesson, inputGospel, inputHymn1, inputHymn2, inputHymn3, inputAnnouncement, inputPdfLink];
-    inputs.forEach(input => {
-        if (input) {
-            input.addEventListener('input', updateSimulator);
-        }
-    });
-
-    // Handle form submit
-    adminForm.addEventListener('submit', (e) => {
-        e.preventDefault();
+    // 2. WORSHIPPER VIEW LOGIC (bulletin.html)
+    const simDate = document.getElementById('sim-date');
+    if (simDate) {
+        const savedData = JSON.parse(localStorage.getItem('ulc_bulletin_data')) || defaults;
         
-        // Show success alert
-        const submitBtn = adminForm.querySelector('button[type="submit"]');
-        const originalText = submitBtn.textContent;
+        // Populate elements on worshipper screen
+        simDate.textContent = savedData.date;
         
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Updating Live Portal...';
-        submitBtn.style.backgroundColor = 'var(--clr-secondary)';
+        const simFirstLesson = document.getElementById('sim-first-lesson');
+        if (simFirstLesson) simFirstLesson.textContent = savedData.firstLesson;
         
-        setTimeout(() => {
-            submitBtn.textContent = 'Weekly Bulletin Live!';
-            submitBtn.style.backgroundColor = 'green';
-            
-            // Reset button after delay
-            setTimeout(() => {
-                submitBtn.disabled = false;
-                submitBtn.textContent = originalText;
-                submitBtn.style.backgroundColor = '';
-            }, 2000);
-        }, 1200);
-    });
+        const simGospel = document.getElementById('sim-gospel');
+        if (simGospel) simGospel.textContent = savedData.gospel;
+        
+        const simHymn1 = document.getElementById('sim-hymn1');
+        if (simHymn1) simHymn1.textContent = savedData.hymn1;
+        
+        const simHymn2 = document.getElementById('sim-hymn2');
+        if (simHymn2) simHymn2.textContent = savedData.hymn2;
+        
+        const simHymn3 = document.getElementById('sim-hymn3');
+        if (simHymn3) simHymn3.textContent = savedData.hymn3;
+        
+        const simAnnouncement = document.getElementById('sim-announcement');
+        if (simAnnouncement) simAnnouncement.textContent = savedData.announcement;
+        
+        const simPdfLink = document.getElementById('sim-pdf-btn');
+        if (simPdfLink) simPdfLink.href = savedData.pdfUrl;
+    }
 }
