@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Worship Digital Bulletin | United Lutheran Church of Long Island</title>
+    <meta name="description" content="View today's weekly worship bulletin, scripture readings, hymns, and announcements for the United Lutheran Church of Long Island.">
+    
+    <!-- Stylesheets & Scripts -->
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/main.js" defer></script>
+    
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="animate-fade-in">
+
+    <!-- Liturgical Seasons & Shared Worship Banner -->
+    <div class="liturgical-bar">
+        <div class="container">
+            <span class="liturgical-badge">Current Worship Season</span>
+            <span><strong>School Year Rotation (Sept – June):</strong> Worshipping Sundays at 10:00 AM at St. Peter's Campus (11 Ogden Court, Huntington Station)</span>
+        </div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="site-header">
+        <div class="nav-container">
+            <a href="index.html" class="brand" aria-label="United Lutheran Church of Long Island Home">
+                <img src="https://www.mnys.org/assets/18/6/ULC_Logo_2025.png?14372" alt="United Lutheran Church Logo" class="brand-logo">
+                <div class="brand-text">
+                    <h1>United Lutheran</h1>
+                    <p>Church of Long Island</p>
+                </div>
+            </a>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="campuses.html" class="nav-link">Our Campuses</a></li>
+                    <li><a href="history.html" class="nav-link">Our Legacy</a></li>
+                    <li><a href="preschool.html" class="nav-link">Preschool</a></li>
+                    <li><a href="ministries.html" class="nav-link">Ministries</a></li>
+                    <li><a href="bulletin.html" class="nav-link active">Digital Bulletin</a></li>
+                    <li><a href="give.html" class="btn btn-primary btn-sm" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Give Online</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <button class="menu-toggle" aria-label="Toggle Navigation Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Title Banner -->
+        <section class="section" style="background-color: var(--clr-primary); color: var(--clr-text-light); padding: 4rem 0;">
+            <div class="container">
+                <h2 style="color: var(--clr-text-light); text-align: center;">Worshipper Digital Bulletin Portal</h2>
+                <p style="color: var(--clr-text-light); opacity: 0.8; text-align: center; max-width: 700px; margin: 1rem auto 0; font-size: 1.15rem;">
+                    Access scripture readings, hymns, and parish announcements on your phone in the pews. Try out our live office updater below.
+                </p>
+            </div>
+        </section>
+
+        <!-- Bulletin & Admin Split Layout -->
+        <section class="section">
+            <div class="container bulletin-layout">
+                
+                <!-- Left Column: Admin Control Panel -->
+                <div class="admin-panel">
+                    <span class="hero-label" style="color: var(--clr-secondary);"><i data-lucide="settings"></i> Office Dashboard</span>
+                    <h3 style="margin-bottom: 1rem; font-size: 1.35rem;">Update Live Bulletin</h3>
+                    <p style="font-size: 0.9rem; margin-bottom: 1.5rem; line-height: 1.5;">
+                        Fill in this form to update the digital bulletin real-time. Worshippers scanning the pew QR flyer will see these updates instantly.
+                    </p>
+                    
+                    <form id="bulletin-admin-form">
+                        <div class="form-group">
+                            <label class="form-label" for="adm-date">Bulletin Date/Title</label>
+                            <input type="text" id="adm-date" class="form-control" value="Sunday, June 7, 2026">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="adm-first-lesson">First Reading</label>
+                            <input type="text" id="adm-first-lesson" class="form-control" value="Romans 4:13-25">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="adm-gospel">Holy Gospel</label>
+                            <input type="text" id="adm-gospel" class="form-control" value="Matthew 9:9-13, 18-26">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Hymn 1 (Gathering)</label>
+                            <input type="text" id="adm-hymn1" class="form-control" value="Will You Come and Follow Me (ELW 798)">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Hymn 2 (Day)</label>
+                            <input type="text" id="adm-hymn2" class="form-control" value="Jesus Calls Us; o'er the Tumult (ELW 696)">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Hymn 3 (Sending)</label>
+                            <input type="text" id="adm-hymn3" class="form-control" value="I'm So Glad (ELW 860)">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="adm-announcement">Weekly Announcement</label>
+                            <textarea id="adm-announcement" class="form-control" rows="4">Guatemala Mission Tag Sale Fundraiser: Saturday 6/20 from 9:00 AM – 4:00 PM at the Gloria Dei Campus. Drop off items during Joseph's Storehouse hours!</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="adm-pdf-url">Printable PDF Destination URL</label>
+                            <input type="url" id="adm-pdf-url" class="form-control" value="Reference/Bulletin June 7.pdf">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;"><i data-lucide="refresh-cw"></i> Update Live Bulletin</button>
+                    </form>
+                </div>
+
+                <!-- Right Column: Interactive Phone Simulator -->
+                <div>
+                    <div style="text-align: center; margin-bottom: 1.5rem;">
+                        <h3 style="font-size: 1.5rem;">Worshipper Screen Preview</h3>
+                        <p style="font-size: 0.95rem; margin-top: 0.25rem;">Type in the form on the left to see the phone screen update live.</p>
+                    </div>
+
+                    <div class="phone-sim-wrapper">
+                        <div class="phone-screen">
+                            <div class="phone-screen-header">
+                                <span style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--clr-accent-light); font-weight: 700; display: block;">United Lutheran Church</span>
+                                <span id="sim-date">Sunday, June 7, 2026</span>
+                            </div>
+                            
+                            <div class="phone-screen-body">
+                                
+                                <!-- Alert: Worship is rotations -->
+                                <div style="background-color: var(--clr-bg-white); border-left: 3px solid var(--clr-accent); padding: 0.75rem; border-radius: var(--border-radius-sm); font-size: 0.85rem; line-height: 1.4;">
+                                    <strong>Sunday Liturgy:</strong> Holy Communion is celebrated. All are welcome to receive.
+                                </div>
+
+                                <!-- Section: Readings -->
+                                <div class="card" style="padding: 1.25rem; border-radius: var(--border-radius-md); box-shadow: none; border: 1px solid rgba(0,0,0,0.06);">
+                                    <h4 style="font-size: 1rem; color: var(--clr-secondary); text-transform: uppercase; margin-bottom: 0.5rem;"><i data-lucide="book-open" style="width:14px; height:14px; display:inline; vertical-align:middle; margin-right:4px;"></i>Today's Readings</h4>
+                                    <div style="font-size: 0.9rem; margin-bottom: 0.5rem;">
+                                        <strong>First Lesson:</strong> <span id="sim-first-lesson">Romans 4:13-25</span>
+                                    </div>
+                                    <div style="font-size: 0.9rem;">
+                                        <strong>Holy Gospel:</strong> <span id="sim-gospel">Matthew 9:9-13, 18-26</span>
+                                    </div>
+                                </div>
+
+                                <!-- Section: Hymns -->
+                                <div class="card" style="padding: 1.25rem; border-radius: var(--border-radius-md); box-shadow: none; border: 1px solid rgba(0,0,0,0.06);">
+                                    <h4 style="font-size: 1rem; color: var(--clr-primary); text-transform: uppercase; margin-bottom: 0.5rem;"><i data-lucide="music" style="width:14px; height:14px; display:inline; vertical-align:middle; margin-right:4px;"></i>Today's Hymns</h4>
+                                    <ul style="list-style: none; font-size: 0.85rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                        <li><strong>Gathering:</strong> <span id="sim-hymn1">Will You Come and Follow Me (ELW 798)</span></li>
+                                        <li><strong>Day:</strong> <span id="sim-hymn2">Jesus Calls Us; o'er the Tumult (ELW 696)</span></li>
+                                        <li><strong>Sending:</strong> <span id="sim-hymn3">I'm So Glad (ELW 860)</span></li>
+                                    </ul>
+                                </div>
+
+                                <!-- Section: Announcements -->
+                                <div class="card" style="padding: 1.25rem; border-radius: var(--border-radius-md); box-shadow: none; border: 1px solid rgba(0,0,0,0.06); background-color: var(--clr-bg-white);">
+                                    <h4 style="font-size: 1rem; color: var(--clr-primary); text-transform: uppercase; margin-bottom: 0.5rem;"><i data-lucide="info" style="width:14px; height:14px; display:inline; vertical-align:middle; margin-right:4px;"></i>Announcements</h4>
+                                    <p id="sim-announcement" style="font-size: 0.85rem; margin-bottom: 0; line-height: 1.4;">
+                                        Guatemala Mission Tag Sale Fundraiser: Saturday 6/20 from 9:00 AM – 4:00 PM at the Gloria Dei Campus. Drop off items during Joseph's Storehouse hours!
+                                    </p>
+                                </div>
+
+                                <!-- Section: Leaders -->
+                                <div style="font-size: 0.8rem; color: var(--clr-text-muted); border-top: 1px solid rgba(0,0,0,0.06); padding-top: 0.75rem;">
+                                    <strong>Worship Leaders:</strong><br>
+                                    Rev. Christian Cederstrom, Pastor<br>
+                                    Nancy Barker, Assistant • Richard Whitten, Organist
+                                </div>
+
+                                <!-- PDF Bulletin Download Link -->
+                                <div style="margin-top: auto;">
+                                    <a id="sim-pdf-btn" href="Reference/Bulletin June 7.pdf" target="_blank" rel="noopener" class="btn btn-secondary" style="width: 100%; padding: 0.5rem 1rem; font-size: 0.9rem;"><i data-lucide="download"></i> Download Full PDF Bulletin</a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="index.html" class="brand" style="color: white;">
+                    <img src="https://www.mnys.org/assets/18/6/ULC_Logo_2025.png?14372" alt="United Lutheran Church Logo" class="brand-logo" style="filter: brightness(0) invert(1);">
+                    <div class="brand-text">
+                        <h2 style="color: white; font-size: 1.35rem;">United Lutheran</h2>
+                        <p style="color: var(--clr-accent-light);">Church of Long Island</p>
+                    </div>
+                </a>
+                <p>We are a merged ELCA congregation woven from the legacies of St. Peter's, Gloria Dei, and King of Kings. Serving the Huntington and Melville communities.</p>
+            </div>
+            
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul class="footer-links-list">
+                    <li><a href="index.html" class="footer-link">Home</a></li>
+                    <li><a href="campuses.html" class="footer-link">Our Campuses</a></li>
+                    <li><a href="history.html" class="footer-link">Legacy & History</a></li>
+                    <li><a href="preschool.html" class="footer-link">Nursery Preschool</a></li>
+                    <li><a href="ministries.html" class="footer-link">Ministries</a></li>
+                    <li><a href="bulletin.html" class="footer-link">Digital Bulletin</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-contact">
+                <h3>Contact Office</h3>
+                <ul class="footer-contact-list">
+                    <li class="footer-contact-item">
+                        <i data-lucide="map-pin"></i>
+                        <span><strong>St. Peter's Campus (Office)</strong><br>11 Ogden Court, Huntington Station, NY</span>
+                    </li>
+                    <li class="footer-contact-item">
+                        <i data-lucide="mail"></i>
+                        <span>unitedlutheran.li@gmail.com</span>
+                    </li>
+                    <li class="footer-contact-item">
+                        <i data-lucide="phone"></i>
+                        <span>(631) 423-1013</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 United Lutheran Church of Long Island. All Rights Reserved. A congregation of the ELCA.</p>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

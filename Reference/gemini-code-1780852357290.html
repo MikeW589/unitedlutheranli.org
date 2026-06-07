@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>United Lutheran Church of Long Island - Legacy Prototype</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans:,
+                        serif: ['Lora', 'serif'],
+                    },
+                    colors: {
+                        church: {
+                            slate: '#1e293b',
+                            dark: '#0f172a',
+                            gold: '#b45309',
+                            goldLight: '#d97706',
+                            cream: '#fdfbf7',
+                            stone: '#78716c',
+                            warmWhite: '#faf9f6'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #faf9f6;
+        }
+       .scrollbar-none::-webkit-scrollbar {
+            display: none;
+        }
+       .scrollbar-none {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-church-dark flex flex-col min-h-screen">
+
+    <div class="bg-church-slate text-white text-xs sm:text-sm py-2 px-4 flex flex-col sm:flex-row justify-between items-center border-b border-church-gold/20 gap-2">
+        <div class="flex items-center gap-2">
+            <span class="inline-flex h-2.5 w-2.5 rounded-full bg-amber-500 animate-pulse"></span>
+            <span class="font-medium tracking-wide">Dynamic Liturgical Schedule: Worship Rotates Seasonally Across Sanctuaries!</span>
+        </div>
+        <div class="flex items-center gap-4">
+            <a href="tel:6314231013" class="hover:text-church-gold transition"><i class="fa-solid fa-phone mr-1"></i> (631) 423-1013</a>
+            <span class="hidden sm:inline text-slate-600">|</span>
+            <span class="hidden sm:inline"><i class="fa-solid fa-envelope mr-1"></i> unitedlutheran.li@gmail.com</span>
+        </div>
+    </div>
+
+    <header class="bg-white/95 sticky top-0 z-50 shadow-sm backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center gap-3 cursor-pointer" onclick="navigateTo('home')">
+                    <div class="bg-church-gold text-white p-2.5 rounded-xl shadow-md">
+                        <i class="fa-solid fa-cross text-2xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-lg sm:text-xl font-bold text-church-slate font-serif tracking-tight leading-tight">UNITED LUTHERAN</h1>
+                        <p class="text-[10px] sm:text-xs text-church-stone uppercase tracking-widest font-semibold">Church of Long Island</p>
+                    </div>
+                </div>
+
+                <nav class="hidden md:flex space-x-1 lg:space-x-2">
+                    <button onclick="navigateTo('home')" id="nav-home" class="px-3.5 py-2 rounded-lg text-sm font-semibold hover:bg-slate-50 transition duration-150 text-church-gold border-b-2 border-church-gold">Home</button>
+                    <button onclick="navigateTo('campuses')" id="nav-campuses" class="px-3.5 py-2 rounded-lg text-sm font-semibold hover:bg-slate-50 transition duration-150 text-church-stone hover:text-church-slate">Our Legacies</button>
+                    <button onclick="navigateTo('bulletin')" id="nav-bulletin" class="px-3.5 py-2 rounded-lg text-sm font-semibold hover:bg-slate-50 transition duration-150 text-church-stone hover:text-church-slate">Digital Bulletin</button>
+                    <button onclick="navigateTo('calculator')" id="nav-calculator" class="px-3.5 py-2 rounded-lg text-sm font-semibold hover:bg-slate-50 transition duration-150 text-church-stone hover:text-church-slate">Council Planner</button>
+                    <button onclick="navigateTo('assistant')" id="nav-assistant" class="px-3.5 py-2 rounded-lg text-sm font-semibold hover:bg-slate-50 transition duration-150 text-church-stone hover:text-church-slate">Church AI Assistant</button>
+                </nav>
+
+                <div class="hidden sm:flex items-center gap-3">
+                    <button onclick="openDonateModal()" class="bg-church-gold hover:bg-church-goldLight text-white px-5 py-2.5 rounded-xl text-sm font-medium shadow-md hover:shadow-lg transition-all duration-150">
+                        <i class="fa-solid fa-heart mr-2"></i>Give Online
+                    </button>
+                </div>
+
+                <div class="md:hidden">
+                    <button onclick="toggleMobileMenu()" id="mobile-menu-btn" class="p-2 rounded-lg text-church-slate hover:bg-slate-100 focus:outline-none">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-150 px-4 py-4 space-y-2">
+            <button onclick="navigateTo('home'); toggleMobileMenu()" class="block w-full text-left px-4 py-3 rounded-lg text-base font-medium text-church-slate hover:bg-slate-50">Home</button>
+            <button onclick="navigateTo('campuses'); toggleMobileMenu()" class="block w-full text-left px-4 py-3 rounded-lg text-base font-medium text-church-slate hover:bg-slate-50">Our Legacies</button>
+            <button onclick="navigateTo('bulletin'); toggleMobileMenu()" class="block w-full text-left px-4 py-3 rounded-lg text-base font-medium text-church-slate hover:bg-slate-50">Digital Bulletin</button>
+            <button onclick="navigateTo('calculator'); toggleMobileMenu()" class="block w-full text-left px-4 py-3 rounded-lg text-base font-medium text-church-slate hover:bg-slate-50">Council Planner</button>
+            <button onclick="navigateTo('assistant'); toggleMobileMenu()" class="block w-full text-left px-4 py-3 rounded-lg text-base font-medium text-church-slate hover:bg-slate-50">Church AI Assistant</button>
+            <button onclick="openDonateModal(); toggleMobileMenu()" class="w-full text-center bg-church-gold text-white px-4 py-3 rounded-lg text-base font-medium">Give Online</button>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        
+        <section id="view-home" class="view-panel block">
+            <div class="relative bg-church-slate text-white py-28 px-6 md:px-12 overflow-hidden">
+                <div class="absolute inset-0 opacity-15">
+                    <div class="absolute inset-0 bg-gradient-to-r from-church-dark via-church-slate to-transparent z-10"></div>
+                    <svg class="w-full h-full object-cover" xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+                        <defs>
+                            <pattern id="stained" width="50" height="50" patternUnits="userSpaceOnUse">
+                                <path d="M25 0 L50 25 L25 50 L0 25 Z" fill="none" stroke="#ffffff" stroke-width="0.5"/>
+                                <path d="M50 25 L75 0 L100 25 L75 50 Z" fill="none" stroke="#ffffff" stroke-width="0.5"/>
+                            </pattern>
+                        </defs>
+                        <rect width="100%" height="100%" fill="url(#stained)" />
+                    </svg>
+                </div>
+                
+                <div class="relative z-20 max-w-5xl mx-auto text-center md:text-left">
+                    <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-church-gold/30 text-amber-200 border border-church-gold/45 mb-6 uppercase tracking-wider">
+                        <i class="fa-solid fa-hands-holding-circle"></i> Tri-Lutheran Collaborative of Long Island
+                    </span>
+                    <h1 class="text-4xl md:text-6xl font-extrabold font-serif leading-tight mb-6">
+                        United in Faith,<span class="text-church-gold block md:inline"> Celebrating Our Legacies</span>
+                    </h1>
+                    <p class="text-base md:text-lg text-slate-300 font-normal max-w-3xl mb-10 leading-relaxed">
+                        United Lutheran Church is a newly formed congregation woven together from the historic legacies of St. Peter's, Gloria Dei, and King of Kings. Together, we share God’s grace across our Long Island communities.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                        <button onclick="navigateTo('campuses')" class="bg-church-gold hover:bg-church-goldLight text-white px-8 py-4 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-200">
+                            Discover Our Rich Legacies
+                        </button>
+                        <button onclick="navigateTo('bulletin')" class="bg-white/10 hover:bg-white/20 text-white border border-white/20 px-8 py-4 rounded-xl font-semibold backdrop-blur-sm transition-all duration-200 flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-mobile-screen-button"></i> View Digital Bulletin
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white border-b border-slate-100 py-16 px-4">
+                <div class="max-w-6xl mx-auto">
+                    <div class="text-center max-w-3xl mx-auto mb-12">
+                        <span class="text-xs text-church-gold font-bold uppercase tracking-wider">LITURGICAL SEASONS IN SACRED SPACES</span>
+                        <h2 class="text-3xl font-bold font-serif text-church-slate mt-1">Our Seasonal Worship Calendar</h2>
+                        <p class="text-church-stone text-sm mt-3 leading-relaxed">
+                            Rather than gathering in just one place, our unified congregation rotates our worship across our historic, beautiful sanctuaries depending on the season and time of year. Wherever we meet on Sunday, we worship as one family!
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="bg-church-warmWhite border border-slate-200/60 rounded-2xl p-6 flex flex-col justify-between hover:border-church-gold/25 transition">
+                            <div>
+                                <span class="bg-church-slate text-white text-[10px] font-bold tracking-widest uppercase px-2.5 py-1 rounded-md">September – June</span>
+                                <h3 class="text-xl font-bold font-serif text-church-slate mt-4 mb-2">The School Year Sanctuary</h3>
+                                <p class="text-xs text-church-stone leading-relaxed mb-6">
+                                    During the academic school year, we gather for consolidated Sunday Worship and children's Sunday School inside the spacious sanctuary of the St. Peter's Campus in Huntington Station.
+                                </p>
+                            </div>
+                            <div class="border-t border-slate-200 pt-4 flex items-center justify-between text-xs font-semibold text-church-slate">
+                                <span><i class="fa-solid fa-church text-church-gold mr-1"></i> St. Peter's Campus</span>
+                                <span>Sundays @ 10:00 AM</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-church-warmWhite border border-slate-200/60 rounded-2xl p-6 flex flex-col justify-between hover:border-church-gold/25 transition">
+                            <div>
+                                <span class="bg-church-gold text-white text-[10px] font-bold tracking-widest uppercase px-2.5 py-1 rounded-md">July – August</span>
+                                <h3 class="text-xl font-bold font-serif text-church-slate mt-4 mb-2">The Summer Sanctuary</h3>
+                                <p class="text-xs text-church-stone leading-relaxed mb-6">
+                                    During the warm summer months of July and August, our consolidated Sunday worship moves to the intimate, air-conditioned sanctuary of the Gloria Dei Campus.
+                                </p>
+                            </div>
+                            <div class="border-t border-slate-200 pt-4 flex items-center justify-between text-xs font-semibold text-church-slate">
+                                <span><i class="fa-solid fa-snowflake text-sky-600 mr-1"></i> Gloria Dei Campus</span>
+                                <span>Sundays @ 10:00 AM</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-church-warmWhite border border-slate-200/60 rounded-2xl p-6 flex flex-col justify-between hover:border-church-gold/25 transition">
+                            <div>
+                                <span class="bg-emerald-700 text-white text-[10px] font-bold tracking-widest uppercase px-2.5 py-1 rounded-md">Feasts & Holy Weeks</span>
+                                <h3 class="text-xl font-bold font-serif text-church-slate mt-4 mb-2">Holiday & Shared Services</h3>
+                                <p class="text-xs text-church-stone leading-relaxed mb-6">
+                                    Special services (Advent, Lent, Holy Week, Good Friday Tenebrae, and Thanksgiving) are shared and rotate dynamically across all three sanctuaries, including King of Kings in Melville.
+                                </p>
+                            </div>
+                            <div class="border-t border-slate-200 pt-4 flex items-center justify-between text-xs font-semibold text-church-slate">
+                                <span><i class="fa-solid fa-star text-amber-500 mr-1"></i> Sanctuaries Rotate</span>
+                                <span>See Weekly Bulletins</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="max-w-6xl mx-auto px-4 py-16">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <span class="text-xs text-church-gold font-bold uppercase tracking-wider">A VIBRANT MULTI-CAMPUS FAMILY</span>
+                    <h2 class="text-3xl font-bold font-serif text-church-slate mt-1">Our Distributed Ministry Strengths</h2>
+                    <p class="text-church-stone text-sm mt-2">Connecting, serving, and supporting our neighbors midweek</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-2xl border border-slate-150 p-8 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="text-church-gold text-3xl mb-4"><i class="fa-solid fa-graduation-cap"></i></div>
+                            <h3 class="text-lg font-bold text-church-slate mb-1">Christian Ed & Shared Music</h3>
+                            <p class="text-xs text-church-stone mb-4 uppercase tracking-widest font-semibold">St. Peter's Campus Hub</p>
+                            <p class="text-sm text-church-stone leading-relaxed mb-6">
+                                Acts as our hub for children's Sunday School, theological forums, and our joint musical legacy—housing our Jubilate Choir, contemporary Family Choir, and Brass Ensemble rehearsals.
+                            </p>
+                        </div>
+                        <div class="border-t pt-4 text-xs text-church-stone flex justify-between items-center">
+                            <span><i class="fa-solid fa-user-group mr-1.5"></i> Senior Luncheons (Monthly)</span>
+                            <button onclick="navigateTo('campuses')" class="text-church-gold font-bold hover:text-church-goldLight">Details &rarr;</button>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl border border-slate-150 p-8 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="text-church-gold text-3xl mb-4"><i class="fa-solid fa-hand-holding-heart"></i></div>
+                            <h3 class="text-lg font-bold text-church-slate mb-1">Compassion & Community Mercy</h3>
+                            <p class="text-xs text-church-stone mb-4 uppercase tracking-widest font-semibold">Gloria Dei Campus Hub</p>
+                            <p class="text-sm text-church-stone leading-relaxed mb-6">
+                                The outreach center of our parish. Features Joseph's Storehouse Food Pantry (serving 15,000+ individuals shopping on client-choice model) and the Storehouse Closet, weekly NA recovery meetings, and Boy Scouts.
+                            </p>
+                        </div>
+                        <div class="border-t pt-4 text-xs text-church-stone flex justify-between items-center">
+                            <span><i class="fa-solid fa-basket-shopping mr-1.5"></i> Joseph's Storehouse Closet</span>
+                            <button onclick="navigateTo('campuses')" class="text-church-gold font-bold hover:text-church-goldLight">Details &rarr;</button>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl border border-slate-150 p-8 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="text-church-gold text-3xl mb-4"><i class="fa-solid fa-users-line"></i></div>
+                            <h3 class="text-lg font-bold text-church-slate mb-1">Civic Partnership & Nesting</h3>
+                            <p class="text-xs text-church-stone mb-4 uppercase tracking-widest font-semibold">King of Kings Campus Hub</p>
+                            <p class="text-sm text-church-stone leading-relaxed mb-6">
+                                Serving Melville as an active inter-church partner and community site. Hosts the Sung Mood Korean Methodist Church and Mission Vida, Melville AAA recovery groups, and county primary elections.
+                            </p>
+                        </div>
+                        <div class="border-t pt-4 text-xs text-church-stone flex justify-between items-center">
+                            <span><i class="fa-solid fa-square-poll-vertical mr-1.5"></i> Suffolk Board of Elections Site</span>
+                            <button onclick="navigateTo('campuses')" class="text-church-gold font-bold hover:text-church-goldLight">Details &rarr;</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-church-warmWhite py-16 border-t border-slate-100">
+                <div class="max-w-4xl mx-auto px-4 text-center">
+                    <h2 class="text-3xl font-bold font-serif mb-6 text-church-slate">All Are Welcome at Our Shared Table</h2>
+                    <p class="text-base text-church-stone leading-relaxed mb-8">
+                        Following the path of Christ, we celebrate diversity and believe that God's grace belongs to everyone without exception. Regardless of your background, race, age, economic status, family structure, or sexual orientation, you are welcome to find a loving spiritual home with us on Long Island.
+                    </p>
+                    <div class="inline-flex gap-4">
+                        <button onclick="navigateTo('campuses')" class="bg-church-slate hover:bg-church-dark text-white px-6 py-3 rounded-xl text-sm font-semibold transition">Read Our Shared Legacy</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="view-campuses" class="view-panel hidden py-16 px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-xs text-church-gold font-bold uppercase tracking-wider">HONORING OUR INDIVIDUAL ROOTS</span>
+                    <h2 class="text-3xl md:text-4xl font-bold font-serif text-church-slate mb-4">Our Three Campus Legacies</h2>
+                    <p class="text-lg text-church-stone">
+                        Each campus preserves a century of local history and a deep commitment to serving the Huntington and Melville communities. Click any campus to explore its full historical story.
+                    </p>
+                </div>
+
+                <div class="space-y-8 max-w-5xl mx-auto">
+                    
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                        <div class="bg-church-slate text-white p-6 sm:p-8 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-church-gold/20">
+                            <div>
+                                <span class="bg-church-gold text-white text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-md">Established 1908</span>
+                                <h3 class="text-2xl font-bold font-serif mt-2">St. Peter's Campus Legacy</h3>
+                                <p class="text-slate-300 text-xs mt-1">11 Ogden Court, Huntington Station, NY 11746</p>
+                            </div>
+                            <button onclick="toggleLegacySection('legacy-st-peters')" class="bg-white/10 hover:bg-white/20 text-white rounded-lg px-4 py-2 text-xs font-semibold border border-white/20 transition flex items-center gap-2">
+                                <i class="fa-solid fa-book-open"></i> Read Full History
+                            </button>
+                        </div>
+                        <div id="legacy-st-peters" class="p-6 sm:p-8 space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+                                <div class="md:col-span-8 space-y-4 text-sm text-church-stone leading-relaxed">
+                                    <h4 class="font-bold text-church-slate text-base">The Railroad Suburb & "Fairground"</h4>
+                                    <p>
+                                        St. Peter's began doing ministry in Huntington Station in 1908, back when the surrounding town was known as "Fairground" due to local racetracks and county fairs. When the Long Island Rail Road (LIRR) was denied permission to lay tracks through Huntington Village, they built the station two miles south, birthing the "Huntington Station" suburb. St. Peter's emerged to serve this new community, initially renting space in a small Presbyterian chapel on New York Avenue.
+                                    </p>
+                                    <h4 class="font-bold text-church-slate text-base">From the "Little White Church" to Ogden Court</h4>
+                                    <p>
+                                        Having outgrown its rented space, the founding membership dedicated its first classic white wooden church building on Fairgrounds Avenue in 1912, adding an addition in 1924. After World War II, the church was bursting at the seams. In 1951, they purchased another plot farther south on Ogden Court, dedicating the Christian Education Building in 1955. (The original white building was sold to the Greek Orthodox community, becoming the founding sanctuary for St. Paraskevi).
+                                    </p>
+                                    <h4 class="font-bold text-church-slate text-base">Stained Glass, Organ, & Inclusive Faith</h4>
+                                    <p>
+                                        In 1969, St. Peter's dedicated its large modern sanctuary with a soaring bell tower, a historic pipe organ, and a magnificent stained-glass window depicting Christ as *"The Light of the World"*. Committed to progress, in 1977 the parish joined the Association of Evangelical Lutheran Churches (AELC) and later the inclusive ELCA, supporting gender equality and community cooperation.
+                                    </p>
+                                </div>
+                                <div class="md:col-span-4 bg-church-warmWhite p-6 rounded-xl border border-slate-200 flex flex-col justify-between text-xs text-church-stone space-y-4">
+                                    <div class="space-y-3">
+                                        <h5 class="font-bold text-church-slate uppercase tracking-wider border-b pb-2"><i class="fa-solid fa-circle-info mr-1 text-church-gold"></i> Campus Profile</h5>
+                                        <p><strong>Primary Season:</strong> Academic Year Worship (Sept – June)</p>
+                                        <p><strong>Midweek Focus:</strong> Children's Sunday school, Youth education, and Yoga.</p>
+                                        <p><strong>Senior Ministry:</strong> Hosts the monthly Senior Luncheon (hot meals, speakers, games for ages 55+).</p>
+                                        <p><strong>Music Heritage:</strong> Rehearsal home of Jubilate Choir, contemporary Family Choir, and the Brass Ensemble.</p>
+                                    </div>
+                                    <div class="space-y-1.5">
+                                        <p class="font-semibold text-church-slate">Contact Info:</p>
+                                        <p><i class="fa-solid fa-phone mr-1 text-church-gold"></i> (631) 423-1013</p>
+                                        <p><i class="fa-solid fa-envelope mr-1 text-church-gold"></i> stpeters.splc@gmail.com</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                        <div class="bg-church-slate text-white p-6 sm:p-8 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-church-gold/20">
+                            <div>
+                                <span class="bg-church-gold text-white text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-md">Established 1931</span>
+                                <h3 class="text-2xl font-bold font-serif mt-2">Gloria Dei Campus Legacy</h3>
+                                <p class="text-slate-300 text-xs mt-1">22 East 18th Street, Huntington Station, NY 11746</p>
+                            </div>
+                            <button onclick="toggleLegacySection('legacy-gloria-dei')" class="bg-white/10 hover:bg-white/20 text-white rounded-lg px-4 py-2 text-xs font-semibold border border-white/20 transition flex items-center gap-2">
+                                <i class="fa-solid fa-book-open"></i> Read Full History
+                            </button>
+                        </div>
+                        <div id="legacy-gloria-dei" class="p-6 sm:p-8 space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+                                <div class="md:col-span-8 space-y-4 text-sm text-church-stone leading-relaxed">
+                                    <h4 class="font-bold text-church-slate text-base">The Augustana Lutheran Heritage</h4>
+                                    <p>
+                                        Gloria Dei was founded in 1931 as a mission congregation of the Augustana Synod, a primarily Swedish branch of American Lutheranism. Its beautiful Latin name translates to "the glory of God," serving as a constant testament to God’s wonderful presence in Huntington Station. 
+                                    </p>
+                                    <h4 class="font-bold text-church-slate text-base">Sixty Years of Faith & Fellowship</h4>
+                                    <p>
+                                        For over nine decades, Gloria Dei has built a rich legacy of family faith and deep community care. Dedicated leaders like Louise Palmieri taught Sunday School, organized nursery care, and fostered generations of lifelong friendships through the handicraft guild and community circles, making the South Huntington campus a true sanctuary of warm hospitality.
+                                    </p>
+                                    <h4 class="font-bold text-church-slate text-base">The Compassion & Outreach Center</h4>
+                                    <p>
+                                        Following our collaborative union, the Gloria Dei Campus expanded its midweek focus to become our primary center for community care. The campus is home to **Joseph’s Storehouse**, a client-choice food pantry which served over 15,000 individuals in 2019 alone, and the **Joseph's Storehouse Closet**, which provides clothing and housewares to families in need under the coordination of Kathy Readinger.
+                                    </p>
+                                </div>
+                                <div class="md:col-span-4 bg-church-warmWhite p-6 rounded-xl border border-slate-200 flex flex-col justify-between text-xs text-church-stone space-y-4">
+                                    <div class="space-y-3">
+                                        <h5 class="font-bold text-church-slate uppercase tracking-wider border-b pb-2"><i class="fa-solid fa-circle-info mr-1 text-church-gold"></i> Campus Profile</h5>
+                                        <p><strong>Primary Season:</strong> Summer Sunday Worship (July – August)</p>
+                                        <p><strong>Outreach Focus:</strong> Joseph's Storehouse Food Pantry & Joseph's Closet Boutique.</p>
+                                        <p><strong>Youth & Recovery:</strong> Sponsors Boy Scout Troop 34 & Cub Scout Pack 406. Hosts weekly NA groups.</p>
+                                        <p><strong>Education:</strong> In-person Thursday Bible study at 7:00 PM.</p>
+                                    </div>
+                                    <div class="space-y-1.5">
+                                        <p class="font-semibold text-church-slate">Contact Info:</p>
+                                        <p><i class="fa-solid fa-phone mr-1 text-church-gold"></i> (631) 271-2466</p>
+                                        <p><i class="fa-solid fa-envelope mr-1 text-church-gold"></i> office@gloriadeihuntington.org</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                        <div class="bg-church-slate text-white p-6 sm:p-8 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-church-gold/20">
+                            <div>
+                                <span class="bg-church-gold text-white text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-md">Established 1980s</span>
+                                <h3 class="text-2xl font-bold font-serif mt-2">King of Kings Campus Legacy</h3>
+                                <p class="text-slate-300 text-xs mt-1">2611 New York Avenue, Melville, NY 11747</p>
+                            </div>
+                            <button onclick="toggleLegacySection('legacy-king-of-kings')" class="bg-white/10 hover:bg-white/20 text-white rounded-lg px-4 py-2 text-xs font-semibold border border-white/20 transition flex items-center gap-2">
+                                <i class="fa-solid fa-book-open"></i> Read Full History
+                            </button>
+                        </div>
+                        <div id="legacy-king-of-kings" class="p-6 sm:p-8 space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+                                <div class="md:col-span-8 space-y-4 text-sm text-church-stone leading-relaxed">
+                                    <h4 class="font-bold text-church-slate text-base">Melville's Community Anchor</h4>
+                                    <p>
+                                        Located in Melville, King of Kings has spent decades serving as a vital community anchor and civic hub. Originally structured as an intimate, neighborhood community church, the property was built with a deep commitment to inter-faith cooperation and civic service.
+                                    </p>
+                                    <h4 class="font-bold text-church-slate text-base">The Temple Beth Torah Sanctuary Partnership</h4>
+                                    <p>
+                                        In early 1969, King of Kings played a historic ecumenical role on Long Island. Recognizing that Jewish families in South Huntington needed a home, King of Kings hosted the founding organizing meetings and Friday evening Sabbath worship for **Temple Beth Torah** (Reform Jewish Congregation) while they built their synagogue. The two communities maintained a beautiful Thanksgiving Eve service that rotated between the two buildings for decades.
+                                    </p>
+                                    <h4 class="font-bold text-church-slate text-base">The Melville Group Recovery Legacy</h4>
+                                    <p>
+                                        In 1982, the iconic Saturday Night Melville AA Group was established at King of Kings. The meeting arose from a legendary golf match bet between church member Tony Z. and the pastor. Over time, the meeting grew into a key Melville recovery center, eventually adding Al-Anon and beginner study groups that continue to meet weekly.
+                                    </p>
+                                </div>
+                                <div class="md:col-span-4 bg-church-warmWhite p-6 rounded-xl border border-slate-200 flex flex-col justify-between text-xs text-church-stone space-y-4">
+                                    <div class="space-y-3">
+                                        <h5 class="font-bold text-church-slate uppercase tracking-wider border-b pb-2"><i class="fa-solid fa-circle-info mr-1 text-church-gold"></i> Campus Profile</h5>
+                                        <p><strong>Primary Season:</strong> Holiday Worship & Special Holy Week services</p>
+                                        <p><strong>Civic Support:</strong> Core polling place for the Suffolk County Board of Elections.</p>
+                                        <p><strong>Nesting Partners:</strong> Physical sanctuary home for Sung Mood Korean Methodist and Mission Vida Church.</p>
+                                        <p><strong>Recovery Support:</strong> Weekly host of Melville AA and Al-Anon meetings.</p>
+                                    </div>
+                                    <div class="space-y-1.5">
+                                        <p class="font-semibold text-church-slate">Contact Info:</p>
+                                        <p><i class="fa-solid fa-phone mr-1 text-church-gold"></i> (631) 549-5767</p>
+                                        <p><i class="fa-solid fa-envelope mr-1 text-church-gold"></i> kingsonline@optonline.net</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="view-bulletin" class="view-panel hidden py-16 px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold font-serif text-church-slate mb-4">Worshipper Digital Bulletin Portal</h2>
+                    <p class="text-lg text-church-stone">
+                        Say goodbye to wasted paper bulletins. Below, try out our live **Digital Bulletin simulator** and **Admin QR Poster Generator**—designed to let your church office generate instant printable signage in under 30 seconds!
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    
+                    <div class="bg-white p-8 rounded-2xl shadow-md border border-slate-150 lg:col-span-5">
+                        <div class="flex items-center gap-2 text-church-gold font-bold mb-4 uppercase text-xs tracking-wider">
+                            <i class="fa-solid fa-circle-user text-sm"></i> Office Assistant Dashboard
+                        </div>
+                        <h3 class="text-xl font-bold text-church-slate mb-4">Update Digital Bulletin</h3>
+                        <p class="text-xs text-church-stone mb-6 leading-relaxed">
+                            Fill in this form to update the live virtual bulletin on your screens and generate the print-ready pew flyer.
+                        </p>
+
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-xs font-bold text-church-slate uppercase mb-1.5">Bulletin Date/Title</label>
+                                <input type="text" id="bulletin-date" value="Sunday, June 7, 2026" class="w-full border rounded-xl p-3 text-sm focus:ring-2 focus:ring-church-gold/20 focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-church-slate uppercase mb-1.5">First Reading</label>
+                                <input type="text" id="bulletin-reading" value="Genesis 1:1-5" class="w-full border rounded-xl p-3 text-sm focus:ring-2 focus:ring-church-gold/20 focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-church-slate uppercase mb-1.5">Gospel</label>
+                                <input type="text" id="bulletin-gospel" value="John 1:1-14" class="w-full border rounded-xl p-3 text-sm focus:ring-2 focus:ring-church-gold/20 focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-church-slate uppercase mb-1.5">Weekly Announcement</label>
+                                <textarea id="bulletin-announcement" rows="3" class="w-full border rounded-xl p-3 text-sm focus:ring-2 focus:ring-church-gold/20 focus:outline-none">Join us for coffee, delicious home-baked cookies, and fellowship immediately following worship in the St. Peter's social hall! Yoga meets on Wednesday evening at Gloria Dei.</textarea>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-church-slate uppercase mb-1.5">Upload Link / Document Destination</label>
+                                <input type="text" id="bulletin-url" value="https://www.mnys.org/unitedlutheranli/" class="w-full border rounded-xl p-3 text-xs bg-slate-50 focus:outline-none text-church-stone" readonly>
+                                <span class="text-[10px] text-church-stone mt-1 block">In production, this is the static URL your QR flyer will lead to each week.</span>
+                            </div>
+
+                            <button onclick="updateLiveBulletin()" class="w-full bg-church-gold hover:bg-church-goldLight text-white font-semibold py-3 rounded-xl transition duration-150 mt-2">
+                                <i class="fa-solid fa-arrows-rotate mr-2"></i> Update Bulletin & QR Poster
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="flex gap-2 bg-slate-200/60 p-1 rounded-xl">
+                            <button onclick="switchSimTab('tab-phone')" id="btn-tab-phone" class="flex-1 py-2 rounded-lg text-sm font-semibold transition bg-white text-church-slate shadow-sm">
+                                <i class="fa-solid fa-mobile-screen mr-2 text-xs"></i> Visitor Phone View
+                            </button>
+                            <button onclick="switchSimTab('tab-flyer')" id="btn-tab-flyer" class="flex-1 py-2 rounded-lg text-sm font-semibold transition text-church-stone hover:text-church-slate">
+                                <i class="fa-solid fa-print mr-2 text-xs"></i> Printable QR Pew Flyer
+                            </button>
+                        </div>
+
+                        <div id="sim-tab-phone" class="border border-slate-150 rounded-2xl bg-slate-900 p-4 max-w-sm mx-auto shadow-2xl">
+                            <div class="bg-white rounded-xl overflow-hidden shadow-inner flex flex-col h-[520px]">
+                                <div class="bg-church-slate text-white p-4 flex items-center justify-between">
+                                    <div class="flex items-center gap-1.5">
+                                        <div class="bg-church-gold p-1 rounded">
+                                            <i class="fa-solid fa-cross text-[10px]"></i>
+                                        </div>
+                                        <span class="text-xs font-bold font-serif">United Lutheran</span>
+                                    </div>
+                                    <span class="text-[10px] bg-white/20 px-2 py-0.5 rounded font-semibold text-emerald-300">Live Bulletin</span>
+                                </div>
+                                <div class="p-5 overflow-y-auto flex-grow space-y-4">
+                                    <div class="text-center">
+                                        <p class="text-[10px] text-church-stone font-semibold uppercase tracking-wider">Welcome To Worship</p>
+                                        <h4 id="phone-title" class="text-lg font-bold text-church-slate font-serif">Sunday, June 7, 2026</h4>
+                                        <div class="w-8 h-0.5 bg-church-gold mx-auto mt-2"></div>
+                                    </div>
+
+                                    <div class="bg-church-warmWhite p-3.5 rounded-lg border border-church-gold/10">
+                                        <h5 class="text-xs font-bold text-church-gold uppercase tracking-wider mb-1"><i class="fa-solid fa-book-open mr-1"></i> First Lesson</h5>
+                                        <p id="phone-reading" class="text-sm font-semibold text-church-slate">Genesis 1:1-5</p>
+                                    </div>
+
+                                    <div class="bg-church-warmWhite p-3.5 rounded-lg border border-church-gold/10">
+                                        <h5 class="text-xs font-bold text-church-gold uppercase tracking-wider mb-1"><i class="fa-solid fa-book-open mr-1"></i> Holy Gospel</h5>
+                                        <p id="phone-gospel" class="text-sm font-semibold text-church-slate">John 1:1-14</p>
+                                    </div>
+
+                                    <div class="bg-white border rounded-lg p-3.5 shadow-sm space-y-1.5">
+                                        <h5 class="text-xs font-bold text-church-slate uppercase tracking-wider"><i class="fa-solid fa-circle-exclamation mr-1 text-church-gold"></i> Weekly Announcements</h5>
+                                        <p id="phone-announcement" class="text-xs text-church-stone leading-relaxed">
+                                            Join us for coffee, delicious home-baked cookies, and fellowship immediately following worship in the St. Peter's social hall! Yoga meets on Wednesday evening at Gloria Dei.
+                                        </p>
+                                    </div>
+
+                                    <button onclick="openDonateModal()" class="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-lg text-xs tracking-wider uppercase shadow-md transition">
+                                        <i class="fa-solid fa-heart mr-2"></i> Support Our Missions (Online Giving)
+                                    </button>
+                                </div>
+                                <div class="bg-slate-50 border-t p-3 text-center text-[10px] text-church-stone font-medium">
+                                    United Lutheran Church of Long Island
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="sim-tab-flyer" class="hidden bg-white p-8 rounded-2xl shadow-md border border-slate-200 text-center space-y-6 max-w-lg mx-auto">
+                            <div class="border-4 border-double border-church-slate p-6 space-y-6">
+                                <div class="space-y-1">
+                                    <div class="text-3xl text-church-gold"><i class="fa-solid fa-cross"></i></div>
+                                    <h3 class="text-2xl font-extrabold font-serif text-church-slate">UNITED LUTHERAN CHURCH</h3>
+                                    <p class="text-xs text-church-stone uppercase tracking-widest font-bold">Of Long Island • Worship Rotates Seasonally</p>
+                                </div>
+
+                                <div class="bg-church-warmWhite py-3.5 px-4 rounded-xl border border-church-slate/15">
+                                    <p class="text-sm font-bold text-church-slate leading-tight">WELCOME TO TODAY'S SERVICE!</p>
+                                    <p class="text-[11px] text-church-stone mt-1">If there are no paper bulletins available, or you prefer to use your phone, please scan below:</p>
+                                </div>
+
+                                <div class="flex flex-col items-center justify-center space-y-2">
+                                    <div class="bg-white p-3 border border-slate-250 shadow-md inline-block rounded-xl">
+                                        <img id="qr-image" src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://www.mnys.org/unitedlutheranli/" alt="Bulletin QR Code" class="w-40 h-40">
+                                    </div>
+                                    <p class="text-[10px] font-mono text-church-stone" id="qr-target-text">Encodes: https://www.mnys.org/unitedlutheranli/</p>
+                                </div>
+
+                                <div class="space-y-1.5 text-xs">
+                                    <p class="font-bold text-church-slate"><i class="fa-solid fa-arrows-to-eye text-church-gold mr-1"></i> Scan with your phone's camera app</p>
+                                    <p class="text-church-stone text-[11px]">This takes you directly to today's active bulletin, readings, announcements, and giving page. Thank you for conserving paper with us!</p>
+                                </div>
+                            </div>
+                            
+                            <div class="pt-4 flex justify-center">
+                                <button onclick="window.print()" class="px-5 py-2.5 bg-church-slate hover:bg-church-dark text-white rounded-xl text-xs font-bold transition flex items-center gap-2">
+                                    <i class="fa-solid fa-print"></i> Print QR Poster for Pews
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="view-calculator" class="view-panel hidden py-16 px-4">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold font-serif text-church-slate mb-4">Parish Council Website Planner</h2>
+                    <p class="text-lg text-church-stone">
+                        Preparing your proposal for the transition committee? Estimate your actual setup and yearly recurring costs dynamically below to find the best strategic plan.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+                    <div class="lg:col-span-7 bg-white p-8 rounded-2xl shadow-md border border-slate-150 space-y-6 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-church-slate mb-4"><i class="fa-solid fa-sliders text-church-gold mr-2"></i> Configuration Sliders</h3>
+                            
+                            <div class="space-y-6">
+                                <div>
+                                    <div class="flex justify-between text-sm font-bold text-church-slate mb-2">
+                                        <span>DESIGN & DEVELOPMENT ROUTE</span>
+                                        <span id="route-label" class="text-church-gold font-bold">Standard CMS (Squarespace/Wix)</span>
+                                    </div>
+                                    <select id="select-route" onchange="calculateBudget()" class="w-full border rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-church-gold/25">
+                                        <option value="diy-static">DIY Static (Free Netlify / Member-developed Code)</option>
+                                        <option value="diy-cms" selected>Standard DIY CMS (Squarespace / Wix Web-Builder)</option>
+                                        <option value="pro-custom">Professional Custom Setup (Paid Designer + Custom Platform)</option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <div class="flex justify-between text-sm font-bold text-church-slate mb-2">
+                                        <span>DOMAIN EXTENSION (.org vs.church)</span>
+                                        <span id="domain-label" class="text-church-gold font-bold">Standard.org ($12/yr)</span>
+                                    </div>
+                                    <select id="select-domain" onchange="calculateBudget()" class="w-full border rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-church-gold/25">
+                                        <option value="org" selected>Standard.org or.com Domain (~$12/year)</option>
+                                        <option value="church">Premium.church or.congregation Domain (~$35/year)</option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <div class="flex justify-between text-sm font-bold text-church-slate mb-1">
+                                        <span>CHURCH EMAIL INFRASTRUCTURE</span>
+                                        <span id="email-label" class="text-church-gold font-bold">Google Non-profit Workspace ($0/yr)</span>
+                                    </div>
+                                    <select id="select-email" onchange="calculateBudget()" class="w-full border rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-church-gold/25">
+                                        <option value="free" selected>Google Workspace for Nonprofits ($0 - 501c3 Required)</option>
+                                        <option value="basic-workspace">Paid Commercial Workspace (Google Workspace @ $6/user/mo - 3 users)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-amber-50 p-4 rounded-xl border border-church-gold/10 text-xs text-church-gold font-semibold flex items-start gap-2 mt-4">
+                            <i class="fa-solid fa-lightbulb text-sm mt-0.5"></i>
+                            <div>
+                                <span class="font-bold block mb-0.5">Strategic Tip</span>
+                                Registered churches are eligible for free premium Google Workspace email services. Our budget calculator applies a $0 cost if you select the Nonprofit option!
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5 bg-church-slate text-white p-8 rounded-2xl shadow-xl flex flex-col justify-between">
+                        <div>
+                            <span class="text-xs uppercase font-bold tracking-widest text-church-gold">Annual Budget Summary</span>
+                            <h3 class="text-2xl font-serif font-bold mt-1 mb-6">Financial Impact</h3>
+
+                            <div class="space-y-6">
+                                <div class="border-b border-white/10 pb-4">
+                                    <p class="text-xs text-slate-400 font-bold uppercase tracking-wider">Estimated Year 1 Total</p>
+                                    <p class="text-4xl font-extrabold font-serif text-white mt-1" id="cost-y1">$228.00</p>
+                                    <span class="text-[10px] text-slate-400">Includes domain purchase, initial setup, & first year hosting.</span>
+                                </div>
+
+                                <div>
+                                    <p class="text-xs text-slate-400 font-bold uppercase tracking-wider">Recurring Annual Cost</p>
+                                    <p class="text-3xl font-extrabold font-serif text-church-gold mt-1" id="cost-recurring">$228.00</p>
+                                    <span class="text-[10px] text-slate-400">Ongoing year-on-year maintenance.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-white/10 pt-6 mt-6 space-y-2 text-xs">
+                            <div class="flex justify-between text-slate-300">
+                                <span>Domain Name:</span>
+                                <span id="item-domain" class="font-mono">$12.00/yr</span>
+                            </div>
+                            <div class="flex justify-between text-slate-300">
+                                <span>Hosting/Platform:</span>
+                                <span id="item-host" class="font-mono">$216.00/yr</span>
+                            </div>
+                            <div class="flex justify-between text-slate-300">
+                                <span>Email Accounts:</span>
+                                <span id="item-email" class="font-mono">$0.00/yr</span>
+                            </div>
+                            <div class="flex justify-between text-slate-300 font-bold text-white border-t border-white/5 pt-2">
+                                <span>Professional Services:</span>
+                                <span id="item-pro" class="font-mono text-church-gold">$0.00 (One-time)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="view-assistant" class="view-panel hidden py-16 px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center max-w-2xl mx-auto mb-10">
+                    <h2 class="text-3xl md:text-4xl font-bold font-serif text-church-slate mb-3">Church Virtual Assistant</h2>
+                    <p class="text-base text-church-stone">
+                        Powered by Google Gemini. This assistant has been updated with our dynamic seasonal worship schedule and histories. Ask a question to see how an automated AI could pastorally guide prospective visitors!
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-xl border border-slate-150 overflow-hidden flex flex-col h-[550px]">
+                    <div class="bg-church-slate text-white px-6 py-4 flex items-center justify-between border-b border-church-gold/20">
+                        <div class="flex items-center gap-3">
+                            <div class="bg-church-gold p-2 rounded-xl text-white">
+                                <i class="fa-solid fa-robot text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm leading-tight">ULC Community Assistant</h4>
+                                <span class="text-[10px] text-emerald-400 font-semibold"><i class="fa-solid fa-circle text-[8px] animate-pulse mr-1"></i> Live Chatbot</span>
+                            </div>
+                        </div>
+                        <span class="text-xs text-slate-400 hidden sm:inline">United Lutheran Church of LI</span>
+                    </div>
+
+                    <div id="chat-messages" class="flex-grow p-6 overflow-y-auto space-y-4 bg-church-warmWhite">
+                        <div class="flex gap-3 max-w-[85%]">
+                            <div class="bg-church-gold text-white w-8 h-8 rounded-full flex items-center justify-center text-xs flex-shrink-0">
+                                <i class="fa-solid fa-cross"></i>
+                            </div>
+                            <div class="bg-white p-4 rounded-2xl rounded-tl-none border border-slate-200 shadow-sm text-sm">
+                                <p class="leading-relaxed">
+                                    Hello! Welcome to the United Lutheran Church of Long Island community portal. 
+                                    I can help you with worship schedules, history, ministries, or tell you about our beautiful campuses. How may I serve you today?
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="chat-typing" class="hidden px-6 py-2 bg-church-warmWhite text-xs text-church-stone italic flex items-center gap-1.5">
+                        <span class="inline-block w-1.5 h-1.5 rounded-full bg-church-stone animate-bounce"></span>
+                        <span class="inline-block w-1.5 h-1.5 rounded-full bg-church-stone animate-bounce [animation-delay:0.2s]"></span>
+                        <span class="inline-block w-1.5 h-1.5 rounded-full bg-church-stone animate-bounce [animation-delay:0.4s]"></span>
+                        <span>Assistant is formulating response...</span>
+                    </div>
+
+                    <div class="bg-white px-4 py-2 border-t flex gap-2 overflow-x-auto text-xs whitespace-nowrap scrollbar-none">
+                        <button onclick="sendSuggestedMessage('How does the seasonal worship schedule work?')" class="bg-slate-50 hover:bg-slate-100 text-church-slate border border-slate-200 px-3 py-1.5 rounded-full transition font-semibold">How does worship rotate?</button>
+                        <button onclick="sendSuggestedMessage('Who is the pastor and who can I contact?')" class="bg-slate-50 hover:bg-slate-100 text-church-slate border border-slate-200 px-3 py-1.5 rounded-full transition font-semibold">Who is the pastor?</button>
+                        <button onclick="sendSuggestedMessage('Tell me about the history of St. Peters, Gloria Dei, and King of Kings.')" class="bg-slate-50 hover:bg-slate-100 text-church-slate border border-slate-200 px-3 py-1.5 rounded-full transition font-semibold">Tell me about our histories</button>
+                    </div>
+
+                    <div class="p-4 bg-white border-t border-slate-200 flex items-center gap-2">
+                        <input type="text" id="chat-input" placeholder="Type your question here (e.g., When do we worship?)..." onkeypress="handleChatKey(event)" class="flex-grow border rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-church-gold/20">
+                        <button onclick="sendMessage()" class="bg-church-gold hover:bg-church-goldLight text-white w-12 h-12 rounded-xl flex items-center justify-center transition shadow shadow-church-gold/25">
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="donate-modal" class="hidden fixed inset-0 z-50 overflow-y-auto flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+        <div class="bg-white rounded-3xl max-w-md w-full overflow-hidden shadow-2xl border border-slate-100 transform scale-95 transition-all duration-300">
+            <div class="bg-church-slate text-white p-6 flex justify-between items-center">
+                <h3 class="font-serif font-bold text-lg">Support Our Shared Ministries</h3>
+                <button onclick="closeDonateModal()" class="text-white/80 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <div class="p-6 space-y-4">
+                <p class="text-sm text-church-stone leading-relaxed">
+                    Giving online is safe, secure, and supports our local missions, youth programs, and community food pantries.
+                </p>
+                
+                <div class="bg-church-warmWhite p-4 rounded-xl border text-center space-y-1">
+                    <p class="text-xs text-church-stone uppercase font-bold">Standard Processing Partner</p>
+                    <p class="text-lg font-bold text-church-slate">Tithe.ly Integration Portal</p>
+                </div>
+
+                <div class="grid grid-cols-3 gap-2">
+                    <button onclick="selectDonateAmount(10)" class="border hover:border-church-gold font-bold py-2.5 rounded-lg text-sm focus:bg-amber-50 focus:text-church-gold">$10</button>
+                    <button onclick="selectDonateAmount(25)" class="border hover:border-church-gold font-bold py-2.5 rounded-lg text-sm focus:bg-amber-50 focus:text-church-gold">$25</button>
+                    <button onclick="selectDonateAmount(100)" class="border hover:border-church-gold font-bold py-2.5 rounded-lg text-sm focus:bg-amber-50 focus:text-church-gold">$100</button>
+                </div>
+
+                <button onclick="simulateDonation()" class="w-full py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-sm shadow transition">
+                    Continue to Safe Donation Simulator
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="alert-bar" class="hidden fixed bottom-4 right-4 z-50 max-w-sm bg-white border border-slate-150 p-4 rounded-xl shadow-xl flex items-start gap-3">
+        <div class="text-emerald-500 text-lg mt-0.5"><i class="fa-solid fa-circle-check"></i></div>
+        <div class="flex-grow">
+            <h5 class="font-bold text-xs text-church-slate" id="alert-title">Success</h5>
+            <p class="text-xs text-church-stone mt-0.5" id="alert-text">Operation completed successfully.</p>
+        </div>
+        <button onclick="closeAlertBar()" class="text-church-stone hover:text-church-slate"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <footer class="bg-church-dark text-slate-400 pt-16 pb-8 border-t border-church-gold/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <div class="space-y-4">
+                    <div class="flex items-center gap-2 text-white">
+                        <div class="bg-church-gold p-1.5 rounded-lg"><i class="fa-solid fa-cross text-sm"></i></div>
+                        <h4 class="font-bold text-base font-serif">United Lutheran Church</h4>
+                    </div>
+                    <p class="text-xs text-slate-500 leading-relaxed">
+                        A combined community of St. Peter's, Gloria Dei, and King of Kings Lutheran Churches of Long Island. Affiliated with the Metropolitan New York Synod (MNYS) and the ELCA.
+                    </p>
+                </div>
+
+                <div>
+                    <h5 class="text-white font-bold text-xs tracking-wider uppercase mb-4">Worship Sanctuaries</h5>
+                    <p class="text-xs leading-relaxed">
+                        <strong class="text-slate-300">Worship Rotates Seasonally:</strong><br>
+                        - School Year: St. Peter's Campus<br>
+                        - Summer Season: Gloria Dei Campus<br>
+                        - Holiday Festivals: Rotates across all three
+                    </p>
+                </div>
+
+                <div>
+                    <h5 class="text-white font-bold text-xs tracking-wider uppercase mb-4">Contact Information</h5>
+                    <p class="text-xs leading-relaxed space-y-1">
+                        <span>Email: <a href="mailto:unitedlutheran.li@gmail.com" class="hover:text-white">unitedlutheran.li@gmail.com</a></span>
+                        <span>Phone: (631) 423-1013</span>
+                        <span>Parish Office: Gloria Dei Campus</span>
+                    </p>
+                </div>
+
+                <div>
+                    <h5 class="text-white font-bold text-xs tracking-wider uppercase mb-4">Quick Links</h5>
+                    <ul class="text-xs space-y-2">
+                        <li><a onclick="navigateTo('home')" class="cursor-pointer hover:text-white">Home</a></li>
+                        <li><a onclick="navigateTo('campuses')" class="cursor-pointer hover:text-white">Our Legacies</a></li>
+                        <li><a onclick="navigateTo('bulletin')" class="cursor-pointer hover:text-white">Digital Bulletin</a></li>
+                        <li><a onclick="navigateTo('calculator')" class="cursor-pointer hover:text-white">Council Financial Planner</a></li>
+                        <li><a onclick="navigateTo('assistant')" class="cursor-pointer hover:text-white">Virtual Assistant Chat</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-white/5 pt-8 text-center text-xs text-slate-600 flex flex-col sm:flex-row justify-between items-center gap-4">
+                <p>&copy; 2026 United Lutheran Church of Long Island. All rights reserved.</p>
+                <div class="flex gap-4">
+                    <a href="https://www.mnys.org/" target="_blank" class="hover:text-slate-500">Metropolitan New York Synod</a>
+                    <span>|</span>
+                    <a href="https://www.elca.org/" target="_blank" class="hover:text-slate-500">ELCA</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Global variables provided for the Gemini API connection
+        const apiKey = ""; 
+        
+        // System prompt defining church details to keep chatbot responses perfectly in character
+        const churchSystemPrompt = `You are a warm, welcoming, and knowledgeable church assistant for United Lutheran Church of Long Island.
+United Lutheran Church is an inclusive ELCA congregation woven together from St. Peter's Evangelical Lutheran, Gloria Dei Lutheran, and King of Kings Lutheran.
+
+Worship is structured seasonally to honor our sanctuaries and legacy homes:
+- School Year (September - June): Worship is held Sundays at 10:00 AM at our St. Peter's Campus sanctuary (11 Ogden Court, Huntington Station, NY).
+- Summer Season (July - August): Worship moves to the cozy, air-conditioned sanctuary at the Gloria Dei Campus (22 E. 18th St, Huntington Station, NY).
+- Holiday & Festival Services (Advent, Lent, Holy Week, Thanksgiving, Christmas): Celebrate alternating services across all three sanctuaries, including the intimate King of Kings sanctuary in Melville (2611 New York Ave).
+
+Campuses Legacies Midweek:
+- St. Peter's Campus: Hosts children's Sunday School, choir practices, monthly Senior Luncheons (ages 55+), and yoga.
+- Gloria Dei Campus: Home to Joseph's Storehouse Client-Choice Food Pantry & Closet, Scouting programs, NA groups, and Thursday Bible Studies.
+- King of Kings Campus: Community nested hub hosting Sung Mood Korean Methodist, Mission Vida, Melville AA, and Suffolk county voting.
+
+Keep responses warm, pastoral, visitor-friendly, and concise.`;
+
+        // Interactive View Navigation system
+        function navigateTo(viewName) {
+            // Hide all views
+            const views = document.querySelectorAll('.view-panel');
+            views.forEach(v => v.classList.add('hidden'));
+            
+            // Show requested view
+            const activeView = document.getElementById('view-' + viewName);
+            if (activeView) {
+                activeView.classList.remove('hidden');
+            }
+
+            // Adjust navigation bar state
+            const navButtons = document.querySelectorAll('header nav button');
+            navButtons.forEach(btn => {
+                btn.classList.remove('text-church-gold', 'border-b-2', 'border-church-gold');
+                btn.classList.add('text-church-stone', 'hover:text-church-slate');
+            });
+
+            const activeBtn = document.getElementById('nav-' + viewName);
+            if (activeBtn) {
+                activeBtn.classList.remove('text-church-stone', 'hover:text-church-slate');
+                activeBtn.classList.add('text-church-gold', 'border-b-2', 'border-church-gold');
+            }
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+            } else {
+                menu.classList.add('hidden');
+            }
+        }
+
+        // Accordion toggle for campuses legacy view
+        function toggleLegacySection(id) {
+            const el = document.getElementById(id);
+            if (el.classList.contains('hidden')) {
+                el.classList.remove('hidden');
+            } else {
+                el.classList.add('hidden');
+            }
+        }
+
+        // Tab switcher for bulletin preview simulator
+        function switchSimTab(tabId) {
+            document.getElementById('sim-tab-phone').classList.add('hidden');
+            document.getElementById('sim-tab-flyer').classList.add('hidden');
+            document.getElementById('btn-tab-phone').className = "flex-1 py-2 rounded-lg text-sm font-semibold transition text-church-stone hover:text-church-slate";
+            document.getElementById('btn-tab-flyer').className = "flex-1 py-2 rounded-lg text-sm font-semibold transition text-church-stone hover:text-church-slate";
+
+            document.getElementById('sim-' + tabId).classList.remove('hidden');
+            document.getElementById('btn-' + tabId).className = "flex-1 py-2 rounded-lg text-sm font-semibold transition bg-white text-church-slate shadow-sm";
+        }
+
+        // Custom UI Alert bar function
+        function showAlert(title, message) {
+            document.getElementById('alert-title').innerText = title;
+            document.getElementById('alert-text').innerText = message;
+            
+            const alertBar = document.getElementById('alert-bar');
+            alertBar.classList.remove('hidden');
+            
+            setTimeout(() => {
+                closeAlertBar();
+            }, 6000);
+        }
+
+        function closeAlertBar() {
+            document.getElementById('alert-bar').classList.add('hidden');
+        }
+
+        // Bulletin Form update mechanism
+        function updateLiveBulletin() {
+            const titleValue = document.getElementById('bulletin-date').value;
+            const readingValue = document.getElementById('bulletin-reading').value;
+            const gospelValue = document.getElementById('bulletin-gospel').value;
+            const annValue = document.getElementById('bulletin-announcement').value;
+
+            // Update Phone View Sim
+            document.getElementById('phone-title').innerText = titleValue;
+            document.getElementById('phone-reading').innerText = readingValue;
+            document.getElementById('phone-gospel').innerText = gospelValue;
+            document.getElementById('phone-announcement').innerText = annValue;
+
+            // Generate customized QR Code flyer
+            const encodedText = `https://www.mnys.org/unitedlutheranli/?date=${encodeURIComponent(titleValue)}&reading=${encodeURIComponent(readingValue)}&gospel=${encodeURIComponent(gospelValue)}&announcement=${encodeURIComponent(annValue)}`;
+            
+            const qrImage = document.getElementById('qr-image');
+            qrImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(encodedText)}`;
+            document.getElementById('qr-target-text').innerText = "Encodes custom parameters dynamically!";
+
+            showAlert("Bulletin Updated Successfully", "The phone view simulator and your custom scan-to-view QR Flyer have been updated dynamically.");
+            switchSimTab('tab-flyer');
+        }
+
+        // Council Planning Budget Estimator Calculator
+        function calculateBudget() {
+            const route = document.getElementById('select-route').value;
+            const domain = document.getElementById('select-domain').value;
+            const email = document.getElementById('select-email').value;
+
+            let domainCost = 12.00;
+            let hostCost = 0.00;
+            let emailCost = 0.00;
+            let setupCost = 0.00;
+
+            if (domain === 'church') {
+                domainCost = 35.00;
+                document.getElementById('domain-label').innerText = "Premium.church /.congregation ($35/yr)";
+            } else {
+                document.getElementById('domain-label').innerText = "Standard.org /.com ($12/yr)";
+            }
+
+            if (route === 'diy-static') {
+                hostCost = 0.00;
+                setupCost = 0.00;
+                document.getElementById('route-label').innerText = "DIY Free Code (GitHub Pages/Netlify)";
+            } else if (route === 'diy-cms') {
+                hostCost = 216.00; 
+                setupCost = 0.00;
+                document.getElementById('route-label').innerText = "DIY Standard Builder (Squarespace)";
+            } else if (route === 'pro-custom') {
+                hostCost = 300.00;
+                setupCost = 1200.00; 
+                document.getElementById('route-label').innerText = "Professional Agency Development";
+            }
+
+            if (email === 'basic-workspace') {
+                emailCost = 216.00; 
+                document.getElementById('email-label').innerText = "Paid Commercial Domain Email ($18/mo)";
+            } else {
+                emailCost = 0.00;
+                document.getElementById('email-label').innerText = "Google Workspace for Nonprofits ($0)";
+            }
+
+            const recurringTotal = domainCost + hostCost + emailCost;
+            const yearOneTotal = recurringTotal + setupCost;
+
+            // Render calculations back to HTML
+            document.getElementById('cost-y1').innerText = `$${yearOneTotal.toFixed(2)}`;
+            document.getElementById('cost-recurring').innerText = `$${recurringTotal.toFixed(2)} / yr`;
+
+            document.getElementById('item-domain').innerText = `$${domainCost.toFixed(2)}/yr`;
+            document.getElementById('item-host').innerText = `$${hostCost.toFixed(2)}/yr`;
+            document.getElementById('item-email').innerText = `$${emailCost.toFixed(2)}/yr`;
+            document.getElementById('item-pro').innerText = setupCost > 0? `$${setupCost.toFixed(2)} (One-time)` : "$0.00";
+        }
+
+        // Modal triggers
+        function openDonateModal() {
+            document.getElementById('donate-modal').classList.remove('hidden');
+        }
+
+        function closeDonateModal() {
+            document.getElementById('donate-modal').classList.add('hidden');
+        }
+
+        function selectDonateAmount(amount) {
+            showAlert("Simulation Target", `Selected standard value: $${amount}. Clicking complete will guide you through our secure mockup pipeline.`);
+        }
+
+        function simulateDonation() {
+            closeDonateModal();
+            showAlert("Secure Donation Mockup", "This simulation portal would now securely transfer control directly to our authorized ELCA donor services.");
+        }
+
+        // Live Gemini API & Chatbot Engine with complete retry policy
+        async function callGeminiAPI(query, systemInstruction) {
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+            const payload = {
+                contents: [{ parts: [{ text: query }] }],
+                systemInstruction: { parts: [{ text: systemInstruction }] }
+            };
+
+            let delay = 1000;
+            for (let attempt = 0; attempt < 5; attempt++) {
+                try {
+                    const response = await fetch(url, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(payload)
+                    });
+                    if (response.ok) {
+                        return await response.json();
+                    }
+                } catch (err) {}
+                await new Promise(resolve => setTimeout(resolve, delay));
+                delay *= 2;
+            }
+            throw new Error("Gemini API connection failed after maximum retry attempts.");
+        }
+
+        // Chatbot UI helpers
+        function appendChatMessage(sender, text) {
+            const container = document.getElementById('chat-messages');
+            const messageWrapper = document.createElement('div');
+            messageWrapper.className = `flex gap-3 max-w-[85%] ${sender === 'user'? 'ml-auto flex-row-reverse' : ''}`;
+
+            const avatarHtml = sender === 'user' 
+               ? `<div class="bg-church-slate text-white w-8 h-8 rounded-full flex items-center justify-center text-xs flex-shrink-0"><i class="fa-solid fa-user"></i></div>`
+                : `<div class="bg-church-gold text-white w-8 h-8 rounded-full flex items-center justify-center text-xs flex-shrink-0"><i class="fa-solid fa-cross"></i></div>`;
+
+            const messageBubble = `
+                <div class="${sender === 'user'? 'bg-church-slate text-white' : 'bg-white text-church-dark'} p-4 rounded-2xl ${sender === 'user'? 'rounded-tr-none' : 'rounded-tl-none'} border border-slate-200 shadow-sm text-sm">
+                    <p class="leading-relaxed">${text}</p>
+                </div>
+            `;
+
+            messageWrapper.innerHTML = avatarHtml + messageBubble;
+            container.appendChild(messageWrapper);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function sendSuggestedMessage(text) {
+            document.getElementById('chat-input').value = text;
+            sendMessage();
+        }
+
+        function handleChatKey(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        // Live Chat message dispatcher (supporting graceful seasonal schedule explanations)
+        async function sendMessage() {
+            const input = document.getElementById('chat-input');
+            const userText = input.value.trim();
+            if (!userText) return;
+
+            input.value = "";
+            appendChatMessage('user', userText);
+
+            const typingIndicator = document.getElementById('chat-typing');
+            typingIndicator.classList.remove('hidden');
+
+            try {
+                if (apiKey && apiKey!== "") {
+                    const result = await callGeminiAPI(userText, churchSystemPrompt);
+                    typingIndicator.classList.add('hidden');
+                    
+                    const responseText = result.candidates?.?.content?.parts?.?.text;
+                    if (responseText) {
+                        appendChatMessage('assistant', responseText);
+                    } else {
+                        throw new Error("No response body parsing candidates available.");
+                    }
+                } else {
+                    setTimeout(() => {
+                        typingIndicator.classList.add('hidden');
+                        const simulatedResponse = getSimulatedChurchResponse(userText);
+                        appendChatMessage('assistant', simulatedResponse);
+                    }, 1200);
+                }
+            } catch (err) {
+                typingIndicator.classList.add('hidden');
+                appendChatMessage('assistant', "I apologize, our community servers are experiencing high traffic, or the Google Gemini API is currently offline. Please try again in a moment, or reach the church office directly at (631) 423-1013.");
+            }
+        }
+
+        // Dynamic seasonal responses for the simulated preview
+        function getSimulatedChurchResponse(query) {
+            const normalized = query.toLowerCase();
+            if (normalized.includes('worship') || normalized.includes('time') || normalized.includes('schedule') || normalized.includes('sunday') || normalized.includes('where')) {
+                return "Our worship rotates **seasonally** to cherish our historic spaces:<br><br>" +
+                       "1. 🏫 **The School Year (Sept – June):** We worship Sundays at **10:00 AM** at our **St. Peter's Campus sanctuary** (11 Ogden Court, Huntington Station) with children's Sunday School at 9:30 AM.<br>" +
+                       "2. ☀️ **The Summer (July – August):** We worship Sundays at **10:00 AM** at our **Gloria Dei Campus sanctuary** (22 East 18th Street, Huntington Station) in our comfortable, air-conditioned home.<br>" +
+                       "3. 🎄 **Feasts & Holy Days (Advent, Lent, Holy Week, Christmas, Thanksgiving):** Services rotate dynamically across **all three sanctuaries**, including King of Kings in Melville (2611 New York Ave). Please check our weekly digital bulletin!";
+            }
+            if (normalized.includes('pastor') || normalized.includes('clergy') || normalized.includes('reverend')) {
+                return "The **Rev. Rebecca Pollicino** serves as our Intentional Interim Pastor, guiding our Tri-Lutheran Collaborative of St. Peter's, Gloria Dei, and King of Kings. If you would like to connect or require pastoral care, you can reach the parish office at (631) 423-1013 or email unitedlutheran.li@gmail.com.";
+            }
+            if (normalized.includes('combine') || normalized.includes('merger') || normalized.includes('history') || normalized.includes('legacy') || normalized.includes('three')) {
+                return "United Lutheran Church of Long Island represents a powerful convergence of faith. **St. Peter's** (est. 1908) brings suburban Fairground history and strong education and music traditions. **Gloria Dei** (est. 1931) brings its Augustana Swedish heritage and vital compassion outreach through Joseph's Storehouse. **King of Kings** (Melville) brings community service and ecumenical partnership (historically hosting Temple Beth Torah's founding meetings in 1969). By unifying, we keep all three campuses alive as midweek centers of ministry!";
+            }
+            return "Thank you for reaching out! In our production system, this response would be generated dynamically using Google's live **Gemini** model. Based on your question, I encourage you to join us for worship, or call our office coordinator directly at **(631) 423-1013** so we can assist you personally!";
+        }
+    </script>
+</body>
+</html>
