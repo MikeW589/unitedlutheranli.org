@@ -128,15 +128,23 @@ function initFormHandlers() {
  * Handles both the Admin Dashboard and the Worshipper View
  */
 function initBulletinSimulator() {
-    // Default values for resetting or fallback
+    // Default values for resetting or fallback (scraped from June 7 bulletin)
     const defaults = {
         date: "Sunday, June 7, 2026",
-        firstLesson: "Romans 4:13-25",
-        gospel: "Matthew 9:9-13, 18-26",
-        hymn1: "Will You Come and Follow Me (ELW 798)",
-        hymn2: "Jesus Calls Us; o'er the Tumult (ELW 696)",
-        hymn3: "I'm So Glad (ELW 860)",
+        prelude: "“Meditation” — Gabriel DuPont",
+        hymn1: "Will You Come and Follow Me (ELW Hymn 798)",
+        prayerOfDay: "God of promise and mercy, you called Matthew to follow you, healed those who came to you in faith, and fulfilled your promises through Jesus Christ. Strengthen our trust in your grace, especially when we cannot see the way ahead. Help us welcome others as you have welcomed us and live as people shaped by your mercy; through Jesus Christ, our Savior and Lord.",
+        firstReadingRef: "Romans 4:13-25",
+        firstReadingText: "13 The promise that he would inherit the world did not come to Abraham or to his descendants through the law but through the righteousness of faith. 14 For if it is the adherents of the law who are to be the heirs, faith is null and the promise is void. 15 For the law brings wrath, but where there is no law, neither is there transgression.\n\n16 For this reason the promise depends on faith, in order that it may rest on grace, so that it may be guaranteed to all his descendants, not only to the adherents of the law but also to those who share the faith of Abraham (who is the father of all of us, 17 as it is written, “I have made you the father of many nations”), in the presence of the God in whom he believed, who gives life to the dead and calls into existence the things that do not exist. 18 Hoping against hope, he believed that he would become “the father of many nations,” according to what was said, “So shall your descendants be.” 19 He did not weaken in faith when he considered his own body, which was already as good as dead (for he was about a hundred years old), and the barrenness of Sarah’s womb. 20 No distrust made him waver concerning the promise of God, but he grew strong in his faith as he gave glory to God, 21 being fully convinced that God was able to do what he had promised. 22 Therefore “it was reckoned to him as righteousness.”\n\n23 Now the words, “it was reckoned to him,” were written not for his sake alone 24 but for ours also. It will be reckoned to us who believe in him who raised Jesus our Lord from the dead, 25 who was handed over for our trespasses and was raised for our justification.",
+        gospelRef: "Matthew 9:9-13, 18-26",
+        gospelText: "9 As Jesus was walking along, he saw a man called Matthew sitting at the tax-collection station, and he said to him, “Follow me.” And he got up and followed him.\n\n10 And as he sat at dinner in the house, many tax collectors and sinners came and were sitting with Jesus and his disciples. 11 When the Pharisees saw this, they said to his disciples, “Why does your teacher eat with tax collectors and sinners?” 12 But when he heard this, he said, “Those who are well have no need of a physician, but those who are sick. 13 Go and learn what this means, ‘I desire mercy, not sacrifice.’ For I have not come to call the righteous but sinners.”\n\n18 While he was saying these things to them, suddenly a leader came in and knelt before him, saying, “My daughter has just died, but come and lay your hand on her, and she will live.” 19 And Jesus got up and followed him, with his disciples. 20 Then suddenly a woman who had been suffering from a flow of blood for twelve years came up behind him and touched the fringe of his cloak, 21 for she was saying to herself, “If I only touch his cloak, I will be made well.” 22 Jesus turned, and seeing her he said, “Take heart, daughter; your faith has made you well.” And the woman was made well from that moment. 23 When Jesus came to the leader’s house and saw the flute players and the crowd making a commotion, 24 he said, “Go away, for the girl is not dead but sleeping.” And they laughed at him. 25 But when the crowd had been put outside, he went in and took her by the hand, and the girl got up. 26 And the report of this spread through all of that district.",
+        hymn2: "Jesus Calls Us; o’er the Tumult (ELW Hymn 696)",
+        hymn3: "I’m So Glad (ELW Hymn 860)",
+        offeringMusic: "“God Adoring” — Katherine K. Davis (Chancel Choir)",
+        postlude: "“March in D” — Flor Peeters",
+        communionHymns: "All Are Welcome (ELW 641), As the Grains of Wheat (ELW 465), Lamb of God (ELW 336)",
         announcement: "Guatemala Mission Tag Sale Fundraiser: Saturday 6/20 from 9:00 AM – 4:00 PM at the Gloria Dei Campus. Drop off items during Joseph's Storehouse hours!",
+        assistants: "Rev. Christian Cederstrom, Pastor\nNancy Barker, Worship Assistant\nRich Harris, Reader and Communion Assistant\nRichard Whitten, Minister of Music/Organist\nLaurie Haddock, Minister of Music/Youth & Family",
         pdfUrl: "Reference/Bulletin June 7.pdf"
     };
 
@@ -149,14 +157,22 @@ function initBulletinSimulator() {
         const savedData = JSON.parse(localStorage.getItem('ulc_bulletin_data')) || defaults;
         
         // Populate form fields
-        document.getElementById('adm-date').value = savedData.date;
-        document.getElementById('adm-first-lesson').value = savedData.firstLesson;
-        document.getElementById('adm-gospel').value = savedData.gospel;
-        document.getElementById('adm-hymn1').value = savedData.hymn1;
-        document.getElementById('adm-hymn2').value = savedData.hymn2;
-        document.getElementById('adm-hymn3').value = savedData.hymn3;
-        document.getElementById('adm-announcement').value = savedData.announcement;
-        document.getElementById('adm-pdf-url').value = savedData.pdfUrl;
+        document.getElementById('adm-date').value = savedData.date || defaults.date;
+        document.getElementById('adm-prelude').value = savedData.prelude || defaults.prelude;
+        document.getElementById('adm-hymn1').value = savedData.hymn1 || defaults.hymn1;
+        document.getElementById('adm-prayer-of-day').value = savedData.prayerOfDay || defaults.prayerOfDay;
+        document.getElementById('adm-first-lesson').value = savedData.firstReadingRef || defaults.firstReadingRef;
+        document.getElementById('adm-first-lesson-text').value = savedData.firstReadingText || defaults.firstReadingText;
+        document.getElementById('adm-gospel').value = savedData.gospelRef || defaults.gospelRef;
+        document.getElementById('adm-gospel-text').value = savedData.gospelText || defaults.gospelText;
+        document.getElementById('adm-hymn2').value = savedData.hymn2 || defaults.hymn2;
+        document.getElementById('adm-hymn3').value = savedData.hymn3 || defaults.hymn3;
+        document.getElementById('adm-offering-music').value = savedData.offeringMusic || defaults.offeringMusic;
+        document.getElementById('adm-postlude').value = savedData.postlude || defaults.postlude;
+        document.getElementById('adm-communion-hymns').value = savedData.communionHymns || defaults.communionHymns;
+        document.getElementById('adm-announcement').value = savedData.announcement || defaults.announcement;
+        document.getElementById('adm-assistants').value = savedData.assistants || defaults.assistants;
+        document.getElementById('adm-pdf-url').value = savedData.pdfUrl || defaults.pdfUrl;
 
         // Form Submission
         adminForm.addEventListener('submit', (e) => {
@@ -164,12 +180,20 @@ function initBulletinSimulator() {
             
             const newData = {
                 date: document.getElementById('adm-date').value,
-                firstLesson: document.getElementById('adm-first-lesson').value,
-                gospel: document.getElementById('adm-gospel').value,
+                prelude: document.getElementById('adm-prelude').value,
                 hymn1: document.getElementById('adm-hymn1').value,
+                prayerOfDay: document.getElementById('adm-prayer-of-day').value,
+                firstReadingRef: document.getElementById('adm-first-lesson').value,
+                firstReadingText: document.getElementById('adm-first-lesson-text').value,
+                gospelRef: document.getElementById('adm-gospel').value,
+                gospelText: document.getElementById('adm-gospel-text').value,
                 hymn2: document.getElementById('adm-hymn2').value,
                 hymn3: document.getElementById('adm-hymn3').value,
+                offeringMusic: document.getElementById('adm-offering-music').value,
+                postlude: document.getElementById('adm-postlude').value,
+                communionHymns: document.getElementById('adm-communion-hymns').value,
                 announcement: document.getElementById('adm-announcement').value,
+                assistants: document.getElementById('adm-assistants').value,
                 pdfUrl: document.getElementById('adm-pdf-url').value
             };
 
@@ -182,9 +206,11 @@ function initBulletinSimulator() {
                 alertBox.innerHTML = `
                     <div style="background-color: #d1fae5; border: 1px solid #10b981; color: #065f46; padding: 1rem; border-radius: var(--border-radius-sm); font-size: 0.95rem; font-weight: 600; display: flex; align-items: center; gap: 8px;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                        <span>Bulletin updated successfully! Worshippers will now see these changes live.</span>
+                        <span>Bulletin published successfully! Worshippers will now see these changes live.</span>
                     </div>
                 `;
+                // Auto scroll to alert
+                alertBox.scrollIntoView({ behavior: 'smooth' });
                 // Auto hide after 4 seconds
                 setTimeout(() => { alertBox.style.display = 'none'; }, 4000);
             }
@@ -198,12 +224,20 @@ function initBulletinSimulator() {
                     
                     // Reset inputs
                     document.getElementById('adm-date').value = defaults.date;
-                    document.getElementById('adm-first-lesson').value = defaults.firstLesson;
-                    document.getElementById('adm-gospel').value = defaults.gospel;
+                    document.getElementById('adm-prelude').value = defaults.prelude;
                     document.getElementById('adm-hymn1').value = defaults.hymn1;
+                    document.getElementById('adm-prayer-of-day').value = defaults.prayerOfDay;
+                    document.getElementById('adm-first-lesson').value = defaults.firstReadingRef;
+                    document.getElementById('adm-first-lesson-text').value = defaults.firstReadingText;
+                    document.getElementById('adm-gospel').value = defaults.gospelRef;
+                    document.getElementById('adm-gospel-text').value = defaults.gospelText;
                     document.getElementById('adm-hymn2').value = defaults.hymn2;
                     document.getElementById('adm-hymn3').value = defaults.hymn3;
+                    document.getElementById('adm-offering-music').value = defaults.offeringMusic;
+                    document.getElementById('adm-postlude').value = defaults.postlude;
+                    document.getElementById('adm-communion-hymns').value = defaults.communionHymns;
                     document.getElementById('adm-announcement').value = defaults.announcement;
+                    document.getElementById('adm-assistants').value = defaults.assistants;
                     document.getElementById('adm-pdf-url').value = defaults.pdfUrl;
 
                     // Show reset alert
@@ -229,27 +263,51 @@ function initBulletinSimulator() {
         const savedData = JSON.parse(localStorage.getItem('ulc_bulletin_data')) || defaults;
         
         // Populate elements on worshipper screen
-        simDate.textContent = savedData.date;
+        simDate.textContent = savedData.date || defaults.date;
         
-        const simFirstLesson = document.getElementById('sim-first-lesson');
-        if (simFirstLesson) simFirstLesson.textContent = savedData.firstLesson;
-        
-        const simGospel = document.getElementById('sim-gospel');
-        if (simGospel) simGospel.textContent = savedData.gospel;
-        
+        const simPrelude = document.getElementById('sim-prelude');
+        if (simPrelude) simPrelude.textContent = savedData.prelude || defaults.prelude;
+
         const simHymn1 = document.getElementById('sim-hymn1');
-        if (simHymn1) simHymn1.textContent = savedData.hymn1;
-        
+        if (simHymn1) simHymn1.textContent = savedData.hymn1 || defaults.hymn1;
+
+        const simPrayerOfDay = document.getElementById('sim-prayer-of-day');
+        if (simPrayerOfDay) simPrayerOfDay.textContent = savedData.prayerOfDay || defaults.prayerOfDay;
+
+        const simFirstLessonRef = document.getElementById('sim-first-lesson-ref');
+        if (simFirstLessonRef) simFirstLessonRef.textContent = savedData.firstReadingRef || defaults.firstReadingRef;
+
+        const simFirstLessonText = document.getElementById('sim-first-lesson-text');
+        if (simFirstLessonText) simFirstLessonText.textContent = savedData.firstReadingText || defaults.firstReadingText;
+
+        const simGospelRef = document.getElementById('sim-gospel-ref');
+        if (simGospelRef) simGospelRef.textContent = savedData.gospelRef || defaults.gospelRef;
+
+        const simGospelText = document.getElementById('sim-gospel-text');
+        if (simGospelText) simGospelText.textContent = savedData.gospelText || defaults.gospelText;
+
         const simHymn2 = document.getElementById('sim-hymn2');
-        if (simHymn2) simHymn2.textContent = savedData.hymn2;
-        
+        if (simHymn2) simHymn2.textContent = savedData.hymn2 || defaults.hymn2;
+
         const simHymn3 = document.getElementById('sim-hymn3');
-        if (simHymn3) simHymn3.textContent = savedData.hymn3;
-        
+        if (simHymn3) simHymn3.textContent = savedData.hymn3 || defaults.hymn3;
+
+        const simOfferingMusic = document.getElementById('sim-offering-music');
+        if (simOfferingMusic) simOfferingMusic.textContent = savedData.offeringMusic || defaults.offeringMusic;
+
+        const simPostlude = document.getElementById('sim-postlude');
+        if (simPostlude) simPostlude.textContent = savedData.postlude || defaults.postlude;
+
+        const simCommunionHymns = document.getElementById('sim-communion-hymns');
+        if (simCommunionHymns) simCommunionHymns.textContent = savedData.communionHymns || defaults.communionHymns;
+
         const simAnnouncement = document.getElementById('sim-announcement');
-        if (simAnnouncement) simAnnouncement.textContent = savedData.announcement;
+        if (simAnnouncement) simAnnouncement.textContent = savedData.announcement || defaults.announcement;
+
+        const simAssistants = document.getElementById('sim-assistants');
+        if (simAssistants) simAssistants.textContent = savedData.assistants || defaults.assistants;
         
         const simPdfLink = document.getElementById('sim-pdf-btn');
-        if (simPdfLink) simPdfLink.href = savedData.pdfUrl;
+        if (simPdfLink) simPdfLink.href = savedData.pdfUrl || defaults.pdfUrl;
     }
 }

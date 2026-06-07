@@ -58,92 +58,369 @@
     <!-- Main Content -->
     <main>
         <!-- Title Banner -->
-        <section class="section" style="background-color: var(--clr-primary); color: var(--clr-text-light); padding: 4rem 0;">
-            <div class="container" style="text-align: center;">
-                <h2 style="color: var(--clr-text-light);">Weekly Digital Bulletin</h2>
-                <p style="color: var(--clr-text-light); opacity: 0.8; max-width: 600px; margin: 1rem auto 0; font-size: 1.15rem;">
-                    United Lutheran Church of Long Island &bull; Holy Communion is open to all.
-                </p>
+        <section class="section" style="background-color: var(--clr-primary); color: var(--clr-text-light); padding: 3rem 0; text-align: center;">
+            <div class="container">
+                <h2 style="color: var(--clr-text-light); margin-bottom: 0.25rem;">Weekly Worship Bulletin</h2>
+                <span id="sim-date" style="font-size: 1.25rem; font-family: var(--font-heading); color: var(--clr-accent-light); font-weight: 600;">Sunday, June 7, 2026</span>
             </div>
         </section>
 
-        <!-- Worshipper Bulletin View -->
-        <section class="section" style="background-color: var(--clr-bg-cream); min-height: 50vh;">
-            <div class="container" style="max-width: 700px;">
+        <!-- Sticky Liturgical Sub-Navigation -->
+        <div class="bulletin-subnav">
+            <div class="container">
+                <ul class="bulletin-subnav-list">
+                    <li><a href="#sec-gathering" class="bulletin-subnav-link">Gathering</a></li>
+                    <li><a href="#sec-word" class="bulletin-subnav-link">Word</a></li>
+                    <li><a href="#sec-meal" class="bulletin-subnav-link">Meal</a></li>
+                    <li><a href="#sec-sending" class="bulletin-subnav-link">Sending</a></li>
+                    <li><a href="#sec-announcements" class="bulletin-subnav-link">Announcements</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Bulletin Content -->
+        <section class="section" style="background-color: var(--clr-bg-cream); padding: 3rem 0;">
+            <div class="container" style="max-width: 750px;">
                 
-                <!-- Main Bulletin Document -->
-                <div class="card" style="padding: 3rem; background: var(--clr-bg-pure); border: 1px solid rgba(0,0,0,0.06); box-shadow: var(--shadow-medium); border-top: 6px solid var(--clr-primary);">
+                <div class="card" style="padding: 3.5rem; background: var(--clr-bg-pure); border: 1px solid rgba(0,0,0,0.06); box-shadow: var(--shadow-medium); border-radius: var(--border-radius-lg);">
                     
-                    <div style="text-align: center; border-bottom: 2px solid rgba(0,0,0,0.06); padding-bottom: 1.5rem; margin-bottom: 2rem;">
-                        <span style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--clr-accent); font-weight: 700; display: block; margin-bottom: 0.25rem;">United Lutheran Church</span>
-                        <h3 id="sim-date" style="margin: 0; font-size: 1.75rem; color: var(--clr-primary);">Sunday, June 7, 2026</h3>
+                    <!-- Welcome & Communion Alert -->
+                    <div style="background-color: var(--clr-bg-cream); border-left: 4px solid var(--clr-accent); padding: 1.25rem; border-radius: var(--border-radius-sm); font-size: 0.95rem; line-height: 1.5; margin-bottom: 3rem;">
+                        <strong>Welcome to United Lutheran Church!</strong> We celebrate God's grace with you today. Holy Communion is celebrated at all services and is open to all who desire to meet Christ in this bread and wine. Please follow the instructions of the pastor and ushers during the distribution.
                     </div>
 
-                    <!-- Welcome Note -->
-                    <div style="background-color: var(--clr-bg-cream); border-left: 4px solid var(--clr-accent); padding: 1rem 1.25rem; border-radius: var(--border-radius-sm); font-size: 0.95rem; line-height: 1.5; margin-bottom: 2rem;">
-                        <strong>Welcome to Worship:</strong> Following the path of Christ, we celebrate diversity and believe that God's grace belongs to everyone, without exception. Holy Communion is open to all baptized Christians who wish to receive.
-                    </div>
+                    <!-- GATHERING SECTION -->
+                    <div id="sec-gathering" class="liturgy-section">
+                        <h3 class="liturgy-title"><i data-lucide="sun" style="width:18px; height:18px; display:inline; vertical-align:middle; margin-right:6px;"></i> The Gathering</h3>
+                        
+                        <div class="liturgy-item">
+                            <strong>PRELUDE</strong>
+                            <div id="sim-prelude" style="font-style: italic; color: var(--clr-text-muted);">“Meditation” — Gabriel DuPont</div>
+                        </div>
 
-                    <!-- Section: Readings -->
-                    <div style="margin-bottom: 2.5rem;">
-                        <h4 style="font-size: 1.15rem; color: var(--clr-secondary); text-transform: uppercase; margin-bottom: 1rem; border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 0.25rem; display: flex; align-items: center; gap: 8px;">
-                            <i data-lucide="book-open" style="width: 20px; height: 20px;"></i> Scripture Readings
-                        </h4>
-                        <div style="background-color: var(--clr-bg-white); border-radius: var(--border-radius-md); border: 1px solid rgba(0,0,0,0.04); padding: 1.5rem;">
-                            <div style="font-size: 1.05rem; margin-bottom: 0.75rem; display: flex; justify-content: space-between; flex-wrap: wrap;">
-                                <span><strong>First Lesson:</strong></span>
-                                <span id="sim-first-lesson" style="color: var(--clr-primary); font-weight: 600;">Romans 4:13-25</span>
+                        <div class="liturgy-item">
+                            <strong>WELCOME & ANNOUNCEMENTS</strong>
+                        </div>
+
+                        <div class="liturgy-item">
+                            <span class="leader">Leader: Please rise as you are able for the Gathering.</span>
+                        </div>
+
+                        <div class="liturgy-item">
+                            <strong>CALL TO WORSHIP</strong>
+                            <div style="margin-top: 0.5rem; padding-left: 1rem;">
+                                Leader: God calls ordinary people into lives of faith and service.<br>
+                                <em class="congregation">People: We trust in God's promises.</em><br>
+                                Leader: Christ welcomed tax collectors, sinners, and all who sought his mercy.<br>
+                                <em class="congregation">People: Christ welcomes us as well.</em><br>
+                                Leader: God brings hope where the future seems uncertain and life where all seems lost.<br>
+                                <em class="congregation">People: We place our trust in the God who gives life.</em><br>
+                                Leader: Let us worship the God of mercy and promise.<br>
+                                <em class="congregation">People: Thanks be to God.</em>
                             </div>
-                            <div style="font-size: 1.05rem; display: flex; justify-content: space-between; flex-wrap: wrap;">
-                                <span><strong>Holy Gospel:</strong></span>
-                                <span id="sim-gospel" style="color: var(--clr-primary); font-weight: 600;">Matthew 9:9-13, 18-26</span>
+                        </div>
+
+                        <div class="liturgy-item">
+                            <strong>CONFESSION AND FORGIVENESS</strong>
+                            <div style="margin-top: 0.5rem; padding-left: 1rem;">
+                                Leader: Blessed be the holy Trinity, ☩ one God, whose promises never fail, whose mercy reaches beyond every boundary, and whose grace gives life to the world.<br>
+                                <em class="congregation">People: Amen.</em><br>
+                                Leader: Let us confess our sin in the presence of God and of one another. Merciful God,<br>
+                                <em class="congregation">People: we confess that we do not always trust your promises. We rely on our own strength, judge others too quickly, and sometimes withhold the compassion you freely give. We struggle to believe that you can bring healing to what is broken and hope to situations that seem beyond repair. Forgive us. Renew our faith, soften our hearts, and help us follow Christ more faithfully in our daily lives.</em><br>
+                                Leader: Hear the good news. God did not wait for us to be worthy before offering grace. In Jesus Christ, sinners are welcomed, the broken are restored, and new life is given freely. Your sins are forgiven, and you are made new through God's abundant mercy.<br>
+                                <em class="congregation">People: Amen.</em>
+                            </div>
+                        </div>
+
+                        <div class="liturgy-item">
+                            <strong>GATHERING HYMN</strong>
+                            <div id="sim-hymn1" style="font-weight: 600; color: var(--clr-primary); margin-top: 0.25rem;">Will You Come and Follow Me (ELW Hymn 798)</div>
+                        </div>
+
+                        <div class="liturgy-item">
+                            <strong>KYRIE</strong> (ELW page 184 - read responsively)
+                        </div>
+
+                        <div class="liturgy-item">
+                            <strong>PRAYER OF THE DAY</strong>
+                            <div style="margin-top: 0.5rem; padding-left: 1rem;">
+                                Leader: Let us pray.<br>
+                                <span id="sim-prayer-of-day" style="font-style: italic; color: var(--clr-text-muted);">
+                                    God of promise and mercy, you called Matthew to follow you, healed those who came to you in faith, and fulfilled your promises through Jesus Christ. Strengthen our trust in your grace, especially when we cannot see the way ahead. Help us welcome others as you have welcomed us and live as people shaped by your mercy; through Jesus Christ, our Savior and Lord.
+                                </span><br>
+                                <em class="congregation">People: Amen.</em>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Section: Hymns -->
-                    <div style="margin-bottom: 2.5rem;">
-                        <h4 style="font-size: 1.15rem; color: var(--clr-primary); text-transform: uppercase; margin-bottom: 1rem; border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 0.25rem; display: flex; align-items: center; gap: 8px;">
-                            <i data-lucide="music" style="width: 20px; height: 20px;"></i> Today's Hymns
-                        </h4>
-                        <ul style="list-style: none; font-size: 1.05rem; display: flex; flex-direction: column; gap: 0.75rem; background-color: var(--clr-bg-white); border-radius: var(--border-radius-md); border: 1px solid rgba(0,0,0,0.04); padding: 1.5rem;">
-                            <li style="display: flex; justify-content: space-between; flex-wrap: wrap; border-bottom: 1px dashed rgba(0,0,0,0.05); padding-bottom: 0.5rem;">
-                                <span><strong>Gathering Hymn:</strong></span>
-                                <span id="sim-hymn1" style="font-style: italic;">Will You Come and Follow Me (ELW 798)</span>
-                            </li>
-                            <li style="display: flex; justify-content: space-between; flex-wrap: wrap; border-bottom: 1px dashed rgba(0,0,0,0.05); padding-bottom: 0.5rem;">
-                                <span><strong>Hymn of the Day:</strong></span>
-                                <span id="sim-hymn2" style="font-style: italic;">Jesus Calls Us; o'er the Tumult (ELW 696)</span>
-                            </li>
-                            <li style="display: flex; justify-content: space-between; flex-wrap: wrap;">
-                                <span><strong>Sending Hymn:</strong></span>
-                                <span id="sim-hymn3" style="font-style: italic;">I'm So Glad (ELW 860)</span>
-                            </li>
-                        </ul>
-                    </div>
+                    <!-- WORD SECTION -->
+                    <div id="sec-word" class="liturgy-section">
+                        <h3 class="liturgy-title"><i data-lucide="book-open" style="width:18px; height:18px; display:inline; vertical-align:middle; margin-right:6px;"></i> The Word</h3>
+                        
+                        <div class="liturgy-item">
+                            <span class="leader">Leader: You may be seated.</span>
+                        </div>
 
-                    <!-- Section: Announcements -->
-                    <div style="margin-bottom: 2.5rem;">
-                        <h4 style="font-size: 1.15rem; color: var(--clr-primary); text-transform: uppercase; margin-bottom: 1rem; border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 0.25rem; display: flex; align-items: center; gap: 8px;">
-                            <i data-lucide="info" style="width: 20px; height: 20px;"></i> Weekly Announcements
-                        </h4>
-                        <div style="background-color: var(--clr-bg-white); border-radius: var(--border-radius-md); border: 1px solid rgba(0,0,0,0.04); padding: 1.5rem; line-height: 1.6;">
-                            <p id="sim-announcement" style="margin: 0; font-size: 1rem; color: var(--clr-text-muted);">
-                                Guatemala Mission Tag Sale Fundraiser: Saturday 6/20 from 9:00 AM – 4:00 PM at the Gloria Dei Campus. Drop off items during Joseph's Storehouse hours!
-                            </p>
+                        <div class="liturgy-item">
+                            <strong>FIRST READING: <span id="sim-first-lesson-ref">Romans 4:13-25</span></strong>
+                            <div style="margin-top: 0.5rem; padding-left: 1rem; color: var(--clr-primary-dark); font-weight: 600; font-size: 0.9rem;">
+                                A reading from Romans, the 4th chapter.
+                            </div>
+                            <div id="sim-first-lesson-text" style="margin-top: 0.75rem; padding-left: 1rem; border-left: 2px solid var(--clr-accent); line-height: 1.6; font-size: 0.98rem; text-align: justify; color: var(--clr-text-muted);">
+                                The promise that he would inherit the world did not come to Abraham or to his descendants through the law but through the righteousness of faith. For if it is the adherents of the law who are to be the heirs, faith is null and the promise is void. For the law brings wrath, but where there is no law, neither is there transgression...
+                            </div>
+                            <div style="margin-top: 0.75rem; padding-left: 1rem;">
+                                Reader: The word of the Lord.<br>
+                                <em class="congregation">People: Thanks be to God.</em>
+                            </div>
+                        </div>
+
+                        <div class="liturgy-item">
+                            <span class="leader">Leader: Please rise as you are able.</span>
+                        </div>
+
+                        <div class="liturgy-item">
+                            <strong>GOSPEL ACCLAMATION</strong>
+                            <div class="liturgy-lyrics">
+                                O mighty Rock, O Source of life, let your good Word in doubt and strife
+                                be strongly in us burning, that we be faithful unto death
+                                and live in love and holy faith, from you true wisdom learning.
+                                Lord, your mercy on us shower; by your power Christ confessing,
+                                we will cherish all your blessing.
+                                <span style="display: block; font-size: 0.8rem; font-weight: 700; color: var(--clr-text-muted); margin-top: 0.25rem; font-style: normal;">[ELW Hymn 786 Verse 3]</span>
+                            </div>
+                        </div>
+
+                        <div class="liturgy-item">
+                            <strong>HOLY GOSPEL: <span id="sim-gospel-ref">Matthew 9:9-13, 18-26</span></strong>
+                            <div style="margin-top: 0.5rem; padding-left: 1rem; color: var(--clr-primary-dark); font-weight: 600; font-size: 0.9rem;">
+                                The Holy Gospel according to Matthew, the 9th chapter.
+                                <span style="display: block; font-weight: 700; color: var(--clr-secondary); font-style: italic; margin-top: 0.25rem;">People: Glory to you, O Lord.</span>
+                            </div>
+                            <div id="sim-gospel-text" style="margin-top: 0.75rem; padding-left: 1rem; border-left: 2px solid var(--clr-accent); line-height: 1.6; font-size: 0.98rem; text-align: justify; color: var(--clr-text-muted);">
+                                As Jesus was walking along, he saw a man called Matthew sitting at the tax-collection station, and he said to him, “Follow me.” And he got up and followed him. And as he sat at dinner in the house, many tax collectors and sinners came and were sitting with Jesus and his disciples...
+                            </div>
+                            <div style="margin-top: 0.75rem; padding-left: 1rem;">
+                                Leader: The gospel of the Lord.<br>
+                                <em class="congregation">People: Praise to you, O Christ.</em>
+                            </div>
+                        </div>
+
+                        <div class="liturgy-item">
+                            <span class="leader">Leader: You may be seated.</span>
+                        </div>
+
+                        <div class="liturgy-item">
+                            <strong>SERMON</strong>
+                        </div>
+
+                        <div class="liturgy-item">
+                            <span class="leader">Leader: Please rise as you are able.</span>
+                        </div>
+
+                        <div class="liturgy-item">
+                            <strong>HYMN OF THE DAY</strong>
+                            <div id="sim-hymn2" style="font-weight: 600; color: var(--clr-primary); margin-top: 0.25rem;">Jesus Calls Us; o’er the Tumult (ELW Hymn 696)</div>
+                        </div>
+
+                        <div class="liturgy-item">
+                            <strong>APOSTLES’ CREED</strong>
+                            <div style="margin-top: 0.5rem; padding-left: 1rem; font-style: italic; line-height: 1.6; color: var(--clr-text-muted);">
+                                <em class="congregation">
+                                    I believe in God, the Father almighty, creator of heaven and earth.<br>
+                                    I believe in Jesus Christ, God’s only Son, our Lord, who was conceived by the Holy Spirit, born of the virgin Mary, suffered under Pontius Pilate, was crucified, died, and was buried; he descended to the dead. On the third day he rose again; he ascended into heaven, he is seated at the right hand of the Father, and he will come to judge the living and the dead.<br>
+                                    I believe in the Holy Spirit, the holy catholic church, the communion of saints, the forgiveness of sins, the resurrection of the body, and the life everlasting. Amen.
+                                </em>
+                            </div>
+                        </div>
+
+                        <div class="liturgy-item">
+                            <strong>PRAYERS OF THE CHURCH</strong>
+                            <div style="margin-top: 0.5rem; padding-left: 1rem;">
+                                Leader: Let us pray for the church, the world, and all in need... [Individual prayers read]<br>
+                                Leader: God of grace,<br>
+                                <em class="congregation">People: hear our prayer.</em>
+                            </div>
+                        </div>
+
+                        <div class="liturgy-item">
+                            <strong>SHARING OF CHRIST’S PEACE</strong>
+                            <div style="margin-top: 0.5rem; padding-left: 1rem;">
+                                Leader: The peace of the Lord be with you always!<br>
+                                <em class="congregation">People: And also with you!</em><br>
+                                <span class="leader">Leader: You may share a sign of peace with your neighbors, and then be seated.</span>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Section: Leaders -->
-                    <div style="font-size: 0.9rem; color: var(--clr-text-muted); border-top: 1px solid rgba(0,0,0,0.06); padding-top: 1.5rem; margin-bottom: 2.5rem; line-height: 1.6;">
-                        <strong>Worship Leaders Today:</strong><br>
-                        Rev. Christian Cederstrom, Pastor &bull; Nancy Barker, Assisting Minister &bull; Laurie Haddock, Chancel Music Coordinator &bull; Richard Whitten, Organist
+                    <!-- MEAL SECTION -->
+                    <div id="sec-meal" class="liturgy-section">
+                        <h3 class="liturgy-title"><i data-lucide="music" style="width:18px; height:18px; display:inline; vertical-align:middle; margin-right:6px;"></i> The Meal</h3>
+                        
+                        <div class="liturgy-item">
+                            <strong>OFFERING & ANTHEM</strong>
+                            <div id="sim-offering-music" style="font-style: italic; color: var(--clr-text-muted); margin-top: 0.25rem;">“God Adoring” — Katherine K. Davis (Chancel Choir)</div>
+                        </div>
+
+                        <div class="liturgy-item">
+                            <span class="leader">Leader: Please rise as you are able.</span>
+                        </div>
+
+                        <div class="liturgy-item">
+                            <strong>OFFERING HYMN</strong>
+                            <div class="liturgy-lyrics">
+                                Praise God, from whom all blessings flow;
+                                Praise him, all creatures here below;
+                                Praise him above, ye heav’nly host;
+                                Praise Father, Son and Holy Ghost.
+                                <span style="display: block; font-size: 0.8rem; font-weight: 700; color: var(--clr-text-muted); margin-top: 0.25rem; font-style: normal;">[ELW Hymn # 884]</span>
+                            </div>
+                        </div>
+
+                        <div class="liturgy-item">
+                            <strong>OFFERTORY PRAYER</strong>
+                            <div style="margin-top: 0.5rem; padding-left: 1rem;">
+                                Leader: Let us pray. Faithful God, receive these gifts and use them for the work of your kingdom. Through them, bring hope to those who are discouraged, healing to those who suffer, and mercy to all who are in need. We offer them in the name of Jesus Christ.<br>
+                                <em class="congregation">People: Amen.</em>
+                            </div>
+                        </div>
+
+                        <div class="liturgy-item">
+                            <strong>THE GREAT THANKSGIVING</strong>
+                            <div style="margin-top: 0.5rem; padding-left: 1rem;">
+                                Leader: The Lord be with you.<br>
+                                <em class="congregation">People: And also with you.</em><br>
+                                Leader: Lift up your hearts.<br>
+                                <em class="congregation">People: We lift them to the Lord.</em><br>
+                                Leader: Let us give thanks to the Lord our God.<br>
+                                <em class="congregation">People: It is right to give our thanks and praise.</em><br>
+                                Leader: It is indeed right, our duty and our joy, that we should at all times and in all places give thanks and praise... we praise your name and join their unending hymn:
+                            </div>
+                        </div>
+
+                        <div class="liturgy-item">
+                            <strong>SANCTUS</strong> (read/sung together)
+                            <div style="margin-top: 0.5rem; padding-left: 1rem; font-style: italic; color: var(--clr-text-muted);">
+                                <em class="congregation">
+                                    Holy, holy, holy Lord, God of pow’r and might,<br>
+                                    heaven and earth are full of your glory.<br>
+                                    Hosanna. Hosanna. Hosanna in the highest.<br>
+                                    Blessed is he who comes in the name of the Lord. Hosanna in the highest.
+                                </em>
+                            </div>
+                        </div>
+
+                        <div class="liturgy-item">
+                            <strong>THANKSGIVING AT THE TABLE & WORDS OF INSTITUTION</strong>
+                        </div>
+
+                        <div class="liturgy-item">
+                            <strong>LORD’S PRAYER</strong>
+                            <div style="margin-top: 0.5rem; padding-left: 1rem; font-style: italic; color: var(--clr-text-muted);">
+                                Leader: Gathered into one by the Holy Spirit, let us pray as Jesus taught us:<br>
+                                <em class="congregation">
+                                    Our Father, who art in heaven, hallowed be thy name, thy kingdom come, thy will be done, on earth as it is in heaven. Give us this day our daily bread; and forgive us our trespasses, as we forgive those who trespass against us; and lead us not into temptation, but deliver us from evil. For thine is the kingdom, and the power, and the glory, forever and ever. Amen.
+                                </em>
+                            </div>
+                        </div>
+
+                        <div class="liturgy-item">
+                            <strong>INVITATION TO COMMUNION</strong>
+                            <div style="margin-top: 0.5rem; padding-left: 1rem;">
+                                Leader: Come to the table of Christ. Here we receive not a reward for our achievements, but the gift of God's grace. Here faith is strengthened, mercy is shared, and Christ meets us with the promise of new life.
+                            </div>
+                        </div>
+
+                        <div class="liturgy-item">
+                            <span class="leader">Leader: You may be seated for communion.</span>
+                        </div>
+
+                        <div class="liturgy-item">
+                            <strong>COMMUNION DISTRIBUTION & MUSIC</strong>
+                            <div style="margin-top: 0.5rem; padding-left: 1rem;">
+                                <div style="font-size: 0.92rem; color: var(--clr-text-muted); margin-bottom: 0.75rem;">
+                                    All are welcome at Christ’s table. Wafers are to be dipped into the chalice of wine, or individual communion cups are available.
+                                </div>
+                                <strong>Distribution Hymns today:</strong>
+                                <div id="sim-communion-hymns" style="font-style: italic; color: var(--clr-secondary); font-weight: 600; margin-top: 0.25rem;">
+                                    All Are Welcome (ELW 641), As the Grains of Wheat (ELW 465), Lamb of God (ELW 336)
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="liturgy-item">
+                            <span class="leader">Leader: Please rise as you are able. The body and blood of our Lord Jesus Christ strengthen you and keep you in his grace.</span><br>
+                            <em class="congregation">People: Amen.</em>
+                        </div>
+
+                        <div class="liturgy-item">
+                            <strong>POST-COMMUNION PRAYER</strong>
+                            <div style="margin-top: 0.5rem; padding-left: 1rem;">
+                                Leader: Let us pray. Gracious God, we give you thanks for this meal and for the presence of Christ among us. Strengthen us through this gift so that we may trust your promises, share your mercy, and serve our neighbors with faith and compassion; through Jesus Christ our Lord.<br>
+                                <em class="congregation">People: Amen.</em>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SENDING SECTION -->
+                    <div id="sec-sending" class="liturgy-section">
+                        <h3 class="liturgy-title"><i data-lucide="send" style="width:18px; height:18px; display:inline; vertical-align:middle; margin-right:6px;"></i> The Sending</h3>
+                        
+                        <div class="liturgy-item">
+                            <span class="leader">Leader: Please rise as you are able for the blessing.</span>
+                        </div>
+
+                        <div class="liturgy-item">
+                            <strong>BLESSING</strong>
+                            <div style="margin-top: 0.5rem; padding-left: 1rem;">
+                                Leader: May the God who made a promise to Abraham strengthen your faith. May Christ Jesus fill your life with mercy and compassion. And may the Holy Spirit guide you in hope and peace, now and always.<br>
+                                <em class="congregation">People: Amen.</em>
+                            </div>
+                        </div>
+
+                        <div class="liturgy-item">
+                            <strong>SENDING HYMN</strong>
+                            <div id="sim-hymn3" style="font-weight: 600; color: var(--clr-primary); margin-top: 0.25rem;">I’m So Glad (ELW Hymn 860)</div>
+                        </div>
+
+                        <div class="liturgy-item">
+                            <strong>DISMISSAL</strong>
+                            <div style="margin-top: 0.5rem; padding-left: 1rem;">
+                                Leader: Go in peace. Serve the Lord.<br>
+                                <em class="congregation">People: Thanks be to God.</em>
+                            </div>
+                        </div>
+
+                        <div class="liturgy-item">
+                            <strong>POSTLUDE</strong>
+                            <div id="sim-postlude" style="font-style: italic; color: var(--clr-text-muted);">“March in D” — Flor Peeters</div>
+                        </div>
+
+                        <!-- Section: Leaders -->
+                        <div style="font-size: 0.9rem; color: var(--clr-text-muted); border-top: 1px solid rgba(0,0,0,0.06); padding-top: 1.5rem; margin-top: 2rem; line-height: 1.6;">
+                            <strong>ASSISTING IN WORSHIP TODAY:</strong>
+                            <div id="sim-assistants" style="white-space: pre-line; margin-top: 0.5rem; font-family: var(--font-body); color: var(--clr-text-muted);">
+                                Rev. Christian Cederstrom, Pastor
+                                Nancy Barker, Worship Assistant
+                                Rich Harris, Reader and Communion Assistant
+                                Richard Whitten, Minister of Music/Organist
+                                Laurie Haddock, Minister of Music/Youth & Family
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ANNOUNCEMENTS SECTION -->
+                    <div id="sec-announcements" class="liturgy-section" style="margin-bottom: 0;">
+                        <h3 class="liturgy-title"><i data-lucide="megaphone" style="width:18px; height:18px; display:inline; vertical-align:middle; margin-right:6px;"></i> Weekly Announcements</h3>
+                        <div id="sim-announcement" class="liturgy-lyrics" style="font-family: var(--font-body); font-style: normal; color: var(--clr-text-muted); padding-left: 1.5rem; border-left: 3px solid var(--clr-accent); line-height: 1.7; font-size: 1.05rem; white-space: pre-line; margin: 0;">
+                            Guatemala Mission Tag Sale Fundraiser: Saturday 6/20 from 9:00 AM – 4:00 PM at the Gloria Dei Campus. Drop off items during Joseph's Storehouse hours!
+                        </div>
                     </div>
 
                     <!-- PDF Bulletin Download Link -->
-                    <div style="text-align: center;">
+                    <div style="text-align: center; border-top: 1px solid rgba(0,0,0,0.06); padding-top: 2rem; margin-top: 3rem;">
                         <a id="sim-pdf-btn" href="Reference/Bulletin June 7.pdf" target="_blank" rel="noopener" class="btn btn-secondary" style="width: 100%; padding: 1rem 1.5rem; font-size: 1.1rem; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
-                            <i data-lucide="download"></i> Download Full PDF Bulletin
+                            <i data-lucide="download"></i> Download Printable PDF Bulletin
                         </a>
                     </div>
 

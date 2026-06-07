@@ -912,3 +912,89 @@ a:focus-visible, button:focus-visible {
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
 }
 
+/* Bulletin Sub-Navigation Bar */
+.bulletin-subnav {
+    position: sticky;
+    top: 5rem;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    z-index: 80;
+    padding: 0.75rem 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+}
+
+.bulletin-subnav-list {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+}
+
+.bulletin-subnav-link {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--clr-primary-light);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.25rem 0.5rem;
+    transition: var(--transition-smooth);
+}
+
+.bulletin-subnav-link:hover {
+    color: var(--clr-secondary);
+}
+
+/* Responsive Liturgy Spacing */
+.liturgy-section {
+    margin-bottom: 3.5rem;
+    scroll-margin-top: 8rem; /* ensures correct scroll position for sticky header/subnav */
+}
+
+.liturgy-title {
+    font-family: var(--font-heading);
+    color: var(--clr-primary);
+    font-size: 1.5rem;
+    border-bottom: 2px solid var(--clr-accent);
+    padding-bottom: 0.5rem;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.liturgy-item {
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+    font-size: 1.05rem;
+}
+
+.liturgy-item strong.leader {
+    color: var(--clr-secondary);
+    display: block;
+    margin-bottom: 0.25rem;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+.liturgy-item em.congregation {
+    font-weight: 600;
+    font-style: normal;
+    color: var(--clr-primary-dark);
+}
+
+.liturgy-lyrics {
+    font-family: var(--font-body);
+    font-style: italic;
+    color: var(--clr-text-muted);
+    padding-left: 1.5rem;
+    border-left: 3px solid rgba(180,83,9,0.25);
+    margin: 1.25rem 0;
+    line-height: 1.6;
+    white-space: pre-line; /* preserves line breaks for song lyrics */
+}
+
+

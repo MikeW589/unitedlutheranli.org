@@ -84,31 +84,80 @@
                         
                         <div class="grid-2" style="gap: 1.5rem; margin-bottom: 0;">
                             <div class="form-group">
-                                <label class="form-label" for="adm-first-lesson">First Reading</label>
+                                <label class="form-label" for="adm-prelude">Prelude</label>
+                                <input type="text" id="adm-prelude" class="form-control" value="“Meditation” — Gabriel DuPont" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="adm-hymn1">Gathering Hymn</label>
+                                <input type="text" id="adm-hymn1" class="form-control" value="Will You Come and Follow Me (ELW Hymn 798)" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="adm-prayer-of-day">Prayer of the Day</label>
+                            <textarea id="adm-prayer-of-day" class="form-control" rows="3" required>God of promise and mercy, you called Matthew to follow you, healed those who came to you in faith, and fulfilled your promises through Jesus Christ. Strengthen our trust in your grace, especially when we cannot see the way ahead. Help us welcome others as you have welcomed us and live as people shaped by your mercy; through Jesus Christ, our Savior and Lord.</textarea>
+                        </div>
+                        
+                        <div class="grid-2" style="gap: 1.5rem; margin-bottom: 0;">
+                            <div class="form-group">
+                                <label class="form-label" for="adm-first-lesson">First Reading Reference</label>
                                 <input type="text" id="adm-first-lesson" class="form-control" value="Romans 4:13-25" required>
                             </div>
                             <div class="form-group">
-                                <label class="form-label" for="adm-gospel">Holy Gospel</label>
+                                <label class="form-label" for="adm-gospel">Holy Gospel Reference</label>
                                 <input type="text" id="adm-gospel" class="form-control" value="Matthew 9:9-13, 18-26" required>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="form-label" for="adm-hymn1">Hymn 1 (Gathering)</label>
-                            <input type="text" id="adm-hymn1" class="form-control" value="Will You Come and Follow Me (ELW 798)" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="adm-hymn2">Hymn 2 (Day)</label>
-                            <input type="text" id="adm-hymn2" class="form-control" value="Jesus Calls Us; o'er the Tumult (ELW 696)" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="adm-hymn3">Hymn 3 (Sending)</label>
-                            <input type="text" id="adm-hymn3" class="form-control" value="I'm So Glad (ELW 860)" required>
+                            <label class="form-label" for="adm-first-lesson-text">First Reading Full Scripture Text</label>
+                            <textarea id="adm-first-lesson-text" class="form-control" rows="5" required>The promise that he would inherit the world did not come to Abraham or to his descendants through the law but through the righteousness of faith. For if it is the adherents of the law who are to be the heirs, faith is null and the promise is void. For the law brings wrath, but where there is no law, neither is there transgression...</textarea>
                         </div>
 
                         <div class="form-group">
-                            <label class="form-label" for="adm-announcement">Weekly Announcement</label>
+                            <label class="form-label" for="adm-gospel-text">Holy Gospel Full Scripture Text</label>
+                            <textarea id="adm-gospel-text" class="form-control" rows="5" required>As Jesus was walking along, he saw a man called Matthew sitting at the tax-collection station, and he said to him, “Follow me.” And he got up and followed him. And as he sat at dinner in the house, many tax collectors and sinners came and were sitting with Jesus and his disciples...</textarea>
+                        </div>
+
+                        <div class="grid-2" style="gap: 1.5rem; margin-bottom: 0;">
+                            <div class="form-group">
+                                <label class="form-label" for="adm-hymn2">Hymn of the Day</label>
+                                <input type="text" id="adm-hymn2" class="form-control" value="Jesus Calls Us; o’er the Tumult (ELW Hymn 696)" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="adm-hymn3">Sending Hymn</label>
+                                <input type="text" id="adm-hymn3" class="form-control" value="I’m So Glad (ELW Hymn 860)" required>
+                            </div>
+                        </div>
+
+                        <div class="grid-2" style="gap: 1.5rem; margin-bottom: 0;">
+                            <div class="form-group">
+                                <label class="form-label" for="adm-offering-music">Offering Anthem / Music</label>
+                                <input type="text" id="adm-offering-music" class="form-control" value="“God Adoring” — Katherine K. Davis (Chancel Choir)" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="adm-postlude">Postlude</label>
+                                <input type="text" id="adm-postlude" class="form-control" value="“March in D” — Flor Peeters" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="adm-communion-hymns">Communion Distribution Hymns</label>
+                            <input type="text" id="adm-communion-hymns" class="form-control" value="All Are Welcome (ELW 641), As the Grains of Wheat (ELW 465), Lamb of God (ELW 336)" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="adm-announcement">Weekly Announcements</label>
                             <textarea id="adm-announcement" class="form-control" rows="4" required>Guatemala Mission Tag Sale Fundraiser: Saturday 6/20 from 9:00 AM – 4:00 PM at the Gloria Dei Campus. Drop off items during Joseph's Storehouse hours!</textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="adm-assistants">Worship Assistants</label>
+                            <textarea id="adm-assistants" class="form-control" rows="5" required>Rev. Christian Cederstrom, Pastor
+Nancy Barker, Worship Assistant
+Rich Harris, Reader and Communion Assistant
+Richard Whitten, Minister of Music/Organist
+Laurie Haddock, Minister of Music/Youth & Family</textarea>
                         </div>
 
                         <div class="form-group">
